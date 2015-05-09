@@ -1,10 +1,10 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Bienvenue à Predict'if</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="inc/css/bootstrap.min.css" rel="stylesheet">
+        <title>Bienvenue à Predict'if</title>
     </head>
     <body class="container">
 
@@ -21,15 +21,17 @@
                 </p>
 
                 <p>
-                    <a class="btn btn-success btn-lg" href="ActionServlet?todo=Inscription">Inscription</a>
+                    <a class="btn btn-success btn-lg" href="ActionServlet?todo=page-inscription">Inscription</a>
                 </p>
 
             </div>
         </div>
+
+        <br/>
+        <br/>
+        <br/>
         
-        <br/>
-        <br/>
-        <br/>
+        
         <div class="row">
             <div class="col-md-offset-8 col-md-4"> <a>Accès administrateur</a></div>
         </div>
