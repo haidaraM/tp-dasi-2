@@ -1,20 +1,41 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-
 <html>
     <head>
-        <title>Page d'acceuil</title>
+        <title>Bienvenue à Predict'if</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="inc/css/bootstrap.min.css" rel="stylesheet">
     </head>
-    <body>
-        <div>Salut c'est cool</div>
-        <input id="myButton1" value="Inscription" type="button" >
-        <a href = "TestServlet" >Coucou
-        </a>
+    <body class="container">
+
+        <div class="row">
+            <div class="col-md-offset-2 col-md-6">
+                <div class="page-header">
+                    <h1>Bienvenue à Predict'if</h1>
+                </div>
+
+                <p>
+                    Predict'if est un cabinet de voyance. Nos horoscopes personnalisées pour chacun de nos clients
+                    répondent à toutes les questions d'ordre sentimental, professionnel ou financier dans le plus
+                    strict respect de déontologie. N'hésitez pas à vous inscrire en cliquant sur le bouton ci-dessous.
+                </p>
+
+                <p>
+                    <a class="btn btn-success btn-lg" href="ActionServlet?todo=Inscription">Inscription</a>
+                </p>
+
+            </div>
+        </div>
+        
+        <br/>
+        <br/>
+        <br/>
+        <div class="row">
+            <div class="col-md-offset-8 col-md-4"> <a>Accès administrateur</a></div>
+        </div>
+
+
+
+
     </body>
 </html>
