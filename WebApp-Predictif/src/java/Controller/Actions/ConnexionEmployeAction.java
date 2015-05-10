@@ -9,13 +9,19 @@ import modele.Employe;
  */
 public class ConnexionEmployeAction extends Action{
 
+
     @Override
     public void execute(HttpServletRequest request) {
         
         String login = request.getParameter("login");
         String motDePasse = request.getParameter("password");
         
-        Employe employe = service.Service.connexionEmploye(login, motDePasse);
+        /*Employe employe = service.Service.connexionEmploye(login, motDePasse);
+        if(employe == null){
+            
+        }
+        else {
+        }*/
     }
     
 }

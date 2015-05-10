@@ -5,12 +5,14 @@
  */
 package Controller;
 
+import Controller.Actions.ConnexionEmployeAction;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modele.Employe;
 
 /**
  *
@@ -34,8 +36,10 @@ public class ActionServlet extends HttpServlet {
         if("page-inscription".equals(todo)){
             request.getRequestDispatcher("inscription.jsp").forward(request, response);
         }
-        else{
-            //TODO ainsi de suite
+        else if ("connexion-admin".equals(todo)){
+            ConnexionEmployeAction cea = new ConnexionEmployeAction();
+            cea.execute(request);
+            request.getRequestDispatcher("horoscope.jsp").forward(request, response);
         }
     }
 

@@ -63,7 +63,7 @@
 
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary">Connexion</button>
+                                <button type="submit" class="btn btn-primary" href="ActionServlet?todo=connexion">Connexion</button>
                             </div>
                         </form>
                     </div>

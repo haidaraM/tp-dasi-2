@@ -19,10 +19,22 @@ hs_err_pid*
 /build/
 /dist/
 /B3427/nbproject/private/
+/B3427/build.xml
+/B3427/nbproject/build-impl.xml
+/B3427/nbproject/genfiles.properties
+/B3427/nbproject/project.properties
+/B3427/nbproject/project.xml
 /B3427/build/
+/WebApp-Predictif/nbproject/build-impl.xml
+/WebApp-Predictif/nbproject/genfiles.properties
+/WebApp-Predictif/nbproject/project.properties
+/WebApp-Predictif/nbproject/project.xml
 /WebApp-Predictif/nbproject/private/
 /WebApp-Predictif/build/
 /B3427/dist/
+<<<<<<< Updated upstream
 /B3427/nbproject
 /B3427/build.xml
+=======
+>>>>>>> Stashed changes
 /WebApp-Predictif/dist/
