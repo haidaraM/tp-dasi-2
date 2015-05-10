@@ -28,8 +28,7 @@
                     strict respect de déontologie. N'hésitez pas à vous inscrire en cliquant sur le bouton ci-dessus.
                     
                 </p>
-
-               
+              
 
             </div>
         </div>
@@ -48,12 +47,12 @@
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                             <h4 class="modal-title">Connexion administrateur</h4>
                         </div>
-                        <form action="ActionServlet">
+                        <form action="ActionServlet" method="POST">
                             <input type="hidden" name="todo" value="connexion-admin">
                             <div class="modal-body">
                                 <div class="form-group">
                                     <label for="login">Login (nom)</label>
-                                    <input type="text" class="form-control" name="login" required>
+                                    <input type="text" class="form-control" name="login" id="login" required>
                                 </div>
 
                                 <div class="form-group">
@@ -63,7 +62,7 @@
 
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary" href="ActionServlet?todo=connexion">Connexion</button>
+                                <button type="submit" class="btn btn-primary">Connexion</button>
                             </div>
                         </form>
                     </div>

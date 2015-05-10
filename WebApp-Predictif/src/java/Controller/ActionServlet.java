@@ -32,18 +32,22 @@ public class ActionServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+
         String todo = request.getParameter("todo");
-        if("page-inscription".equals(todo)){
-            request.getRequestDispatcher("inscription.jsp").forward(request, response);
-        }
-        else if ("connexion-admin".equals(todo)){
-            ConnexionEmployeAction cea = new ConnexionEmployeAction();
-            cea.execute(request);
-            request.getRequestDispatcher("horoscope.jsp").forward(request, response);
+        if (null != todo) {
+            switch (todo) {
+                case "page-inscription":
+                    request.getRequestDispatcher("inscription.jsp").forward(request, response);
+                    break;
+                case "connexion-admin":
+                    ConnexionEmployeAction cea = new ConnexionEmployeAction();
+                    cea.execute(request);
+                    request.getRequestDispatcher("horoscope.jsp").forward(request, response);
+                    break;
+            }
         }
     }
 
-    
     /**
      * Handles the HTTP <code>GET</code> method.
      *
