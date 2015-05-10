@@ -8,7 +8,7 @@ package Controller.Actions;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- *
+ * Action pour inscrire un nouveau client
  * @author elmhaidara
  */
 public class InscriptionAction extends Action{

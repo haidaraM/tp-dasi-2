@@ -18,6 +18,7 @@
 
         <form class="form-horizontal" action="ActionServlet" method="POST">
             <input type="hidden" name="todo" value="inscrtion">
+            
             <div class="row">
                 <div class="col-md-6">
 
@@ -34,14 +35,14 @@
                     <div class="form-group"> 
                         <label for="nom" class="col-md-2">Nom </label>
                         <div class="col-md-5"> 
-                            <input type="text" class="form-control" id="nom" name="nom">
+                            <input type="text" class="form-control" id="nom" name="nom" placeholder="Durand">
                         </div>
                     </div>
 
                     <div class="form-group"> 
                         <label for="prenom" class="col-md-2">Prenom </label>
                         <div class="col-md-5"> 
-                            <input type="text" class="form-control" id="prenom" name="prenom">
+                            <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Paul">
                         </div>
                     </div>
 
@@ -87,21 +88,21 @@
                     <div class="form-group"> 
                         <label for="adresse" class="col-md-2">Adresse </label>
                         <div class="col-md-6"> 
-                            <input type="text" class="form-control" id="adresse" name="adresse">
+                            <input type="text" class="form-control" id="adresse" name="adresse" placeholder="Ex : 20 avenue albert einstein">
                         </div>      
                     </div>
 
                     <div class="form-group"> 
                         <label for="telephone" class="col-md-2">Téléphone </label>
                         <div class="col-md-4"> 
-                            <input type="tel" class="form-control" id="telephone" name="telephone">
+                            <input type="tel" class="form-control" id="telephone" name="telephone" placeholder="Ex : 06 06 06 06 06">
                         </div>
                     </div>
 
                     <div class="form-group"> 
                         <label for="courriel" class="col-md-2">Courriel </label>
-                        <div class="col-md-4"> 
-                            <input type="email" class="form-control" id="courriel" name="courriel">
+                        <div class="col-md-5"> 
+                            <input type="email" class="form-control" id="courriel" name="courriel" placeholder="Ex : paul@durand.fr">
                         </div>
                     </div>
                 </div>

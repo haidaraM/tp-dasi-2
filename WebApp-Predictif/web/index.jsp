@@ -34,7 +34,6 @@
         <br/>
         <br/>
 
-
         <div class="row">
             <div class="col-md-offset-8 col-md-4"> <a href="#login_Modal" data-toggle="modal">Accès administrateur</a></div>
             
@@ -45,8 +44,8 @@
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                             <h4 class="modal-title">Connexion administrateur</h4>
                         </div>
-                        <form>
-                            <input type="hidden" name="todo" value="connexion_admin">
+                        <form action="ActionServlet">
+                            <input type="hidden" name="todo" value="connexion-admin">
                             <div class="modal-body">
                                 <div class="form-group">
                                     <label for="login">Login (nom)</label>
@@ -60,7 +59,6 @@
 
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
                                 <button type="submit" class="btn btn-primary">Connexion</button>
                             </div>
                         </form>
