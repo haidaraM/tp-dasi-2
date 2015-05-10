@@ -2,9 +2,12 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>Bienvenue à Predict'if</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="inc/css/bootstrap.min.css" rel="stylesheet">
-        <title>Bienvenue à Predict'if</title>
+        <script src="inc/js/jquery-1.11.2.min.js"></script>
+        <script src="inc/js/bootstrap.js"></script>
+
     </head>
     <body class="container">
 
@@ -15,7 +18,7 @@
                 </div>
 
                 <p>
-                    Predict'if est un cabinet de voyance. Nos horoscopes personnalisées pour chacun de nos clients
+                    Predict'if est un cabinet de voyance. Nos horoscopes personnalisés pour chacun de nos clients
                     répondent à toutes les questions d'ordre sentimental, professionnel ou financier dans le plus
                     strict respect de déontologie. N'hésitez pas à vous inscrire en cliquant sur le bouton ci-dessous.
                 </p>
@@ -30,12 +33,42 @@
         <br/>
         <br/>
         <br/>
-        
-        
-        <div class="row">
-            <div class="col-md-offset-8 col-md-4"> <a>Accès administrateur</a></div>
-        </div>
 
+
+        <div class="row">
+            <div class="col-md-offset-8 col-md-4"> <a href="#login_Modal" data-toggle="modal">Accès administrateur</a></div>
+            
+            <div id="login_Modal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">Connexion administrateur</h4>
+                        </div>
+                        <form>
+                            <input type="hidden" name="todo" value="connexion_admin">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="login">Login (nom)</label>
+                                    <input type="text" class="form-control" name="login" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="password">Mot de passe</label>
+                                    <input type="password" class="form-control" id="password" name="password" required>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                <button type="submit" class="btn btn-primary">Connexion</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
 
 
 

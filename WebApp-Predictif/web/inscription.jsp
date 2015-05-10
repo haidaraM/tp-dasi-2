@@ -5,6 +5,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Predict'if - Inscription</title>
         <link href="inc/css/bootstrap.min.css" rel="stylesheet">
+        <script src="inc/js/bootstrap.min.js"></script>
     </head>
     <body class="container">
         <div class="row">
