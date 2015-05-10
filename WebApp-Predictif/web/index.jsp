@@ -17,15 +17,19 @@
                     <h1>Bienvenue à Predict'if</h1>
                 </div>
 
+                 <p>
+                    <a class="btn btn-success btn-lg" href="ActionServlet?todo=page-inscription"> Inscription  </a>
+                    <img src="inc/img/bonhomme.png" alt="bonhomme" width="40" height="40">
+                </p>
+                
                 <p>
                     Predict'if est un cabinet de voyance. Nos horoscopes personnalisés pour chacun de nos clients
                     répondent à toutes les questions d'ordre sentimental, professionnel ou financier dans le plus
-                    strict respect de déontologie. N'hésitez pas à vous inscrire en cliquant sur le bouton ci-dessous.
+                    strict respect de déontologie. N'hésitez pas à vous inscrire en cliquant sur le bouton ci-dessus.
+                    
                 </p>
 
-                <p>
-                    <a class="btn btn-success btn-lg" href="ActionServlet?todo=page-inscription">Inscription</a>
-                </p>
+               
 
             </div>
         </div>

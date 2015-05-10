@@ -18,7 +18,7 @@
 
         <form class="form-horizontal" action="ActionServlet" method="POST">
             <input type="hidden" name="todo" value="inscrtion">
-            
+
             <div class="row">
                 <div class="col-md-6">
 
@@ -35,14 +35,14 @@
                     <div class="form-group"> 
                         <label for="nom" class="col-md-2">Nom </label>
                         <div class="col-md-5"> 
-                            <input type="text" class="form-control" id="nom" name="nom" placeholder="Durand">
+                            <input type="text" class="form-control" id="nom" name="nom" placeholder="Durand" required>
                         </div>
                     </div>
 
                     <div class="form-group"> 
                         <label for="prenom" class="col-md-2">Prenom </label>
                         <div class="col-md-5"> 
-                            <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Paul">
+                            <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Paul" required>
                         </div>
                     </div>
 
@@ -59,18 +59,18 @@
                         </div>
                         <div class="col-md-3">
                             <select class="form-control" name="mois_naissance">
-                                <option value="January">January</option>
-                                <option value="Febuary">Febuary</option>
-                                <option value="March">March</option>
-                                <option value="April">April</option>
-                                <option value="May">May</option>
-                                <option value="June">June</option>
-                                <option value="July">July</option>
-                                <option value="August">August</option>
-                                <option value="September">September</option>
-                                <option value="October">October</option>
-                                <option value="November">November</option>
-                                <option value="December">December</option>
+                                <option value="1">Janvier</option>
+                                <option value="2">Février</option>
+                                <option value="3">Mars</option>
+                                <option value="4">Avril</option>
+                                <option value="5">Mai</option>
+                                <option value="6">Juin</option>
+                                <option value="7">Juillet</option>
+                                <option value="8">Août</option>
+                                <option value="9">Septembre</option>
+                                <option value="10">Octobre</option>
+                                <option value="11">Novembre</option>
+                                <option value="12">Decembre</option>
                             </select>
                         </div>
 
@@ -88,7 +88,13 @@
                     <div class="form-group"> 
                         <label for="adresse" class="col-md-2">Adresse </label>
                         <div class="col-md-6"> 
-                            <input type="text" class="form-control" id="adresse" name="adresse" placeholder="Ex : 20 avenue albert einstein">
+                            <input type="text" class="form-control" id="adresse" name="adresse" placeholder="Ex : 24 avenue des belles fontaines">
+                        </div>      
+                    </div>
+                    <div class="form-group"> 
+                        <label for="adresse2" class="col-md-2"> </label>
+                        <div class="col-md-6"> 
+                            <input type="text" class="form-control" id="adresse2" name="adresse2" placeholder="Ex : 91600 Savigny sur orge">
                         </div>      
                     </div>
 
@@ -102,7 +108,7 @@
                     <div class="form-group"> 
                         <label for="courriel" class="col-md-2">Courriel </label>
                         <div class="col-md-5"> 
-                            <input type="email" class="form-control" id="courriel" name="courriel" placeholder="Ex : paul@durand.fr">
+                            <input type="email" class="form-control" id="courriel" name="courriel" placeholder="Ex : paul@durand.fr" required >
                         </div>
                     </div>
                 </div>
