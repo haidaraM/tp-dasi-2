@@ -17,7 +17,7 @@
         </div>
 
         <form class="form-horizontal" action="ActionServlet" method="POST">
-            <input type="hidden" name="todo" value="inscrtion">
+            <input type="hidden" name="todo" value="traitement-inscription">
 
             <div class="row">
                 <div class="col-md-6">

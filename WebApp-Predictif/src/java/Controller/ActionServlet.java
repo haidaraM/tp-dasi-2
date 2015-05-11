@@ -6,6 +6,7 @@
 package Controller;
 
 import Controller.Actions.ConnexionEmployeAction;
+import Controller.Actions.InscriptionAction;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -34,16 +35,23 @@ public class ActionServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         String todo = request.getParameter("todo");
+        
         if (null != todo) {
             switch (todo) {
                 case "page-inscription":
                     request.getRequestDispatcher("inscription.jsp").forward(request, response);
+                    break;
+                case "traitement-inscription":
+                    InscriptionAction ia = new InscriptionAction();
+                    ia.execute(request);
+                    request.getRequestDispatcher(ia.getVue()).forward(request, response);
                     break;
                 case "connexion-admin":
                     ConnexionEmployeAction cea = new ConnexionEmployeAction();
                     cea.execute(request);
                     request.getRequestDispatcher("horoscope.jsp").forward(request, response);
                     break;
+                
             }
         }
     }

@@ -13,9 +13,34 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class InscriptionAction extends Action{
 
+    /**
+     * Représente la vue qui sera affichée par l'action servlet
+     */
+    private String vue;
+    
     @Override
     public void execute(HttpServletRequest request) {
-        // TODO : complete with get parameter from request
+        
+        String civilite =  request.getParameter("civilite");
+        String nom = request.getParameter("nom");
+        String prenom = request.getParameter("prenom");
+                    
+        int jour_naissance = Integer.parseInt(request.getParameter("jour_naissance"));
+        int mois_naissance = Integer.parseInt(request.getParameter("mois_naissance"));
+        int annee_naissance = Integer.parseInt(request.getParameter("annee_naissance"));
+                   
+        String adresse = request.getParameter("adresse");
+        String adresse2 = request.getParameter("adresse2");
+        
+        String telephone = request.getParameter("telephone");
+        String courriel = request.getParameter("courriel");
+        
+        vue = "confirmation-inscription.jsp";
     }
+
+    public String getVue() {
+        return vue;
+    }
+    
     
 }
