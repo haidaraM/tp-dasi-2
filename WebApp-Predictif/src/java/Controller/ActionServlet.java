@@ -35,13 +35,14 @@ public class ActionServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+        List<Medium> listMedium;
+        
         String todo = request.getParameter("todo");
         
         if (null != todo) {
             switch (todo) {
                 case "page-inscription":
-                    List<Medium> listMedium = service.Service.obtenirMediums();
+                    listMedium = service.Service.obtenirMediums();
                     request.setAttribute("listMedium", listMedium);
                     request.getRequestDispatcher("inscription.jsp").forward(request, response);
                     break;
@@ -53,7 +54,16 @@ public class ActionServlet extends HttpServlet {
                 case "connexion-admin":
                     ConnexionEmployeAction cea = new ConnexionEmployeAction();
                     cea.execute(request);
-                    request.getRequestDispatcher("horoscope.jsp").forward(request, response);
+                    Employe emp = cea.getEmploye();
+                    /*if(emp != null){*/
+                        //listMedium = service.Service.obtenirMediums();
+                        //request.setAttribute("listMedium", listMedium);
+                        request.getRequestDispatcher("horoscope.jsp").forward(request, response);
+                    /*}
+                    else{
+                        request.getRequestDispatcher("horoscope.jsp").forward(request, response);
+                    }*/
+                    
                     break;
                 
             }

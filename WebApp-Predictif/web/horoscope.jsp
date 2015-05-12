@@ -23,8 +23,11 @@
                             <label for="medium" class="col-md-4">Medium </label>
                             <div class="col-md-7"> 
                                 <select class="form-control" name="medium" id="medium">
-                                    <option value="Medium[0]">ToComplete</option>
-                                    <option value="Medium[1]">ToComplete</option>
+                                    <c:forEach var="medium" items="${listMedium}">
+                                    <c:out value="<option value=${medium.id}> " escapeXml="false" />
+                                    <c:out value="${medium.nom}" />
+                                    <c:out value="</option>" escapeXml="false"/>
+                                </c:forEach>
                                 </select>
                             </div>
                         </div>

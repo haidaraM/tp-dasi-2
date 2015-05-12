@@ -8,7 +8,7 @@ import modele.Employe;
  * @author elmhaidara
  */
 public class ConnexionEmployeAction extends Action{
-
+    Employe employe;
 
     @Override
     public void execute(HttpServletRequest request) {
@@ -16,12 +16,12 @@ public class ConnexionEmployeAction extends Action{
         String login = request.getParameter("login");
         String motDePasse = request.getParameter("password");
         
-        /*Employe employe = service.Service.connexionEmploye(login, motDePasse);
-        if(employe == null){
-            
-        }
-        else {
-        }*/
+         employe = service.Service.connexionEmploye(login, motDePasse);
+        
     }
     
+    public Employe getEmploye(){
+        
+        return employe;
+    }
 }
