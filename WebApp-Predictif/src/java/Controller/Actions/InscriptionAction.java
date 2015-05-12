@@ -6,6 +6,8 @@
 package Controller.Actions;
 
 import javax.servlet.http.HttpServletRequest;
+import modele.Client;
+
 
 /**
  * Action pour inscrire un nouveau client
@@ -35,7 +37,11 @@ public class InscriptionAction extends Action{
         String telephone = request.getParameter("telephone");
         String courriel = request.getParameter("courriel");
         
-        vue = "confirmation-inscription.jsp";
+        Client client = new Client();
+        
+        request.setAttribute("client", client);
+        
+        vue = "WEB-INF/confirmation-inscription.jsp";
     }
 
     public String getVue() {

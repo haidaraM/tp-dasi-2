@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -118,7 +119,7 @@
                     <div class="form-group">
                         <label for="mediums" class="col-md-4">Médiums préférés </label>
                         <div class="col-md-8"> 
-                            <select multiple class="form-control" name="mediums" id="mediums">
+                            <select multiple class="form-control" name="mediums" id="mediums" required>
                                 <option value="Completer avec les donnees de la base">To complete</option>
                                 <option value="Completer avec les donnees de la base">To complete</option>
                             </select>
@@ -126,7 +127,7 @@
                     </div>
                 </div>
             </div>
-
+             
             <div class="row">
                 <div class="col-md-offset-5 col-md-4"> 
                     <button type="submit" class="btn btn-default">Valider inscription</button>

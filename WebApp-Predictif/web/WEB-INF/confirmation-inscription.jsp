@@ -11,8 +11,15 @@
         <div class="page-header">
             <h1 style="text-align: center">Test : Confirmation inscription</h1>
         </div>
-        
-        
+
+        <div id="test">
+            <jsp:useBean id="client" class="modele.Client" scope="request">
+                <p>Bean crée avec succès</p>
+            </jsp:useBean>
+                
+             
+        </div>
+
         <a href="index.jsp" class="btn btn-default">Retour à la page d'accueil</a>
 
     </body>

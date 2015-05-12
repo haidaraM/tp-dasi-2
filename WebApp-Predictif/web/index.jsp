@@ -26,9 +26,9 @@
                     Predict'if est un cabinet de voyance. Nos horoscopes personnalisés pour chacun de nos clients
                     répondent à toutes les questions d'ordre sentimental, professionnel ou financier dans le plus
                     strict respect de déontologie. N'hésitez pas à vous inscrire en cliquant sur le bouton ci-dessus.
-                    
                 </p>
-              
+                
+                
 
             </div>
         </div>
