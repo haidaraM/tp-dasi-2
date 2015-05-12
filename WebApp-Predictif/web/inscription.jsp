@@ -120,14 +120,17 @@
                         <label for="mediums" class="col-md-4">Médiums préférés </label>
                         <div class="col-md-8"> 
                             <select multiple class="form-control" name="mediums" id="mediums" required>
-                                <option value="Completer avec les donnees de la base">To complete</option>
-                                <option value="Completer avec les donnees de la base">To complete</option>
+                                <c:forEach var="medium" items="${listMedium}">
+                                    <c:out value="<option value=${medium.id}> " escapeXml="false" />
+                                    <c:out value="${medium.nom}" />
+                                    <c:out value="</option>" escapeXml="false"/>
+                                </c:forEach>
                             </select>
                         </div>
                     </div>
                 </div>
             </div>
-             
+
             <div class="row">
                 <div class="col-md-offset-5 col-md-4"> 
                     <button type="submit" class="btn btn-default">Valider inscription</button>

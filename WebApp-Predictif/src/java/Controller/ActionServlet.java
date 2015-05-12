@@ -41,7 +41,8 @@ public class ActionServlet extends HttpServlet {
         if (null != todo) {
             switch (todo) {
                 case "page-inscription":
-                    
+                    List<Medium> listMedium = service.Service.obtenirMediums();
+                    request.setAttribute("listMedium", listMedium);
                     request.getRequestDispatcher("inscription.jsp").forward(request, response);
                     break;
                 case "traitement-inscription":
