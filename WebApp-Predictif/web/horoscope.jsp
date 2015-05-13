@@ -20,28 +20,31 @@
 
                     <fieldset>
                         <legend>Infos Client</legend> 
-                        <div class="form-group">
-                            <label for="medium" class="col-md-4">Medium </label>
-                            <div class="col-md-7"> 
-                                <select class="form-control" name="medium" id="medium">
-                                <c:forEach var="medium" items="${listMedium}">
-                                    <c:out value="<option value=${medium.id}> " escapeXml="false" />
-                                    <c:out value="${medium.nom}" />
-                                    <c:out value="</option>" escapeXml="false"/>
-                                </c:forEach>
-                                </select>
-                            </div>
-                        </div>
-
                         <div class="form-group"> 
                             <label for="client" class="col-md-4">Client </label>
                             <div class="col-md-7"> 
                                 <select class="form-control" name="client" id="client">
+                                    <c:forEach var="client" items="${listClient}">
+                                    <c:out value="<option value=${client.id}> " escapeXml="false" />
+                                    <c:out value="${client.prenom} "/>
+                                    <c:out value="${client.nom}" />
+                                    <c:out value="</option>" escapeXml="false"/>
+                                </c:forEach>     
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="medium" class="col-md-4">Medium </label>
+                            <div class="col-md-7"> 
+                                <select class="form-control" name="medium" id="medium">
                                     <option value="Client[0]">ToComplete</option>
                                     <option value="Client[1]">ToComplete</option>
                                 </select>
                             </div>
                         </div>
+
+                        
                     </fieldset>
 
                     <br/>

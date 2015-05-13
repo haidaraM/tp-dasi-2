@@ -15,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modele.Client;
 import modele.Employe;
 import modele.Medium;
 
@@ -37,6 +38,7 @@ public class ActionServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         List<Medium> listMedium;
+        List<Client> listClient;
         
         String todo = request.getParameter("todo");
         
@@ -56,9 +58,9 @@ public class ActionServlet extends HttpServlet {
                     ConnexionEmployeAction cea = new ConnexionEmployeAction();
                     cea.execute(request);
                     /*if(cea.connecte()){*/
-                        listMedium = service.Service.obtenirMediums();
-                        request.setAttribute("listMedium", listMedium);
-                        request.getRequestDispatcher("horoscope.jsp").forward(request, response);
+                        listClient = service.Service.obtenirClients();
+                        request.setAttribute("listClient", listClient);
+                        request.getRequestDispatcher("selectionClient.jsp").forward(request, response);
                     /*}
                     else{
                         request.getRequestDispatcher("horoscope.jsp").forward(request, response);
