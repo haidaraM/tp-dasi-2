@@ -36,9 +36,13 @@ public class InscriptionAction extends Action{
         //TODO : il y'a un soucis avec les dates que je dois corriger
         
         int jour_naissance = Integer.parseInt(request.getParameter("jour_naissance"));
-        int mois_naissance = Integer.parseInt(request.getParameter("mois_naissance"));
+        int mois_naissance = Integer.parseInt(request.getParameter("mois_naissance")) -1;
         int annee_naissance = Integer.parseInt(request.getParameter("annee_naissance"));
         Calendar date = new GregorianCalendar(annee_naissance, mois_naissance, jour_naissance);
+        
+        System.out.println("Jour : "+date.get(Calendar.DAY_OF_MONTH));
+        System.out.println("Mois : "+date.get(Calendar.MONTH));
+        System.out.println("Annee : "+date.get(Calendar.YEAR));
         
                    
         String adresse = request.getParameter("adresse") +" "+ request.getParameter("adresse2");

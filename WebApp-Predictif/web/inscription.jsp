@@ -6,6 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Predict'if - Inscription</title>
         <link href="inc/css/bootstrap.min.css" rel="stylesheet">
+        <script src="inc/js/jquery-1.11.2.min.js"></script>
         <script src="inc/js/bootstrap.min.js"></script>
     </head>
     <body class="container">
@@ -102,7 +103,7 @@
                     <div class="form-group"> 
                         <label for="telephone" class="col-md-2">Téléphone </label>
                         <div class="col-md-4"> 
-                            <input type="tel" class="form-control" id="telephone" name="telephone" placeholder="Ex : 06 06 06 06 06">
+                            <input type="tel" class="form-control" id="telephone" name="telephone" placeholder="Ex : 0606060606">
                         </div>
                     </div>
 

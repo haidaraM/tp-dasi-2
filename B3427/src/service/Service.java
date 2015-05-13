@@ -52,7 +52,7 @@ public class Service {
         SigneDaoJpa sdj = new SigneDaoJpa();
 
         try {
-            Signe signe = sdj.findSigneByNumMois(c.getNaissanceMois());
+            Signe signe = sdj.findSigneByNumMois(c.getNaissanceMois()+1);
             c.setSigne(signe);
 
             EmployeDaoJpa edj = new EmployeDaoJpa();
