@@ -27,8 +27,8 @@
                         <label for="civilite" class="col-md-2">Civilité </label>
                         <div class="col-md-4"> 
                             <select class="form-control" name="civilite" id="civilite">
-                                <option value="Madame">Madame</option>
-                                <option value="Monsieur">Monsieur</option>
+                                <option value="Mme">Madame</option>
+                                <option value="M">Monsieur</option>
                             </select>
                         </div>
                     </div>

@@ -25,6 +25,7 @@ public class InscriptionAction extends Action{
      */
     private String vue;
     
+    
     @Override
     public void execute(HttpServletRequest request) {
         
@@ -32,14 +33,17 @@ public class InscriptionAction extends Action{
         String nom = request.getParameter("nom");
         String prenom = request.getParameter("prenom");
                     
+        //TODO : il y'a un soucis avec les dates que je dois corriger
+        
         int jour_naissance = Integer.parseInt(request.getParameter("jour_naissance"));
         int mois_naissance = Integer.parseInt(request.getParameter("mois_naissance"));
         int annee_naissance = Integer.parseInt(request.getParameter("annee_naissance"));
         Calendar date = new GregorianCalendar(annee_naissance, mois_naissance, jour_naissance);
         
                    
-        String adresse = request.getParameter("adresse");
-        String adresse2 = request.getParameter("adresse2");
+        String adresse = request.getParameter("adresse") +" "+ request.getParameter("adresse2");
+         
+        
         
         String telephone = request.getParameter("telephone");
         String courriel = request.getParameter("courriel");
@@ -51,15 +55,21 @@ public class InscriptionAction extends Action{
             listMedium.add(service.Service.obtenirMediumById(idMedium));
         }
         
-        Client client = new Client(nom, prenom, civilite, date, adresse, nom, nom, listMedium);
+        Client client = new Client(nom, prenom, civilite, date, adresse, telephone, courriel, listMedium);
         
-        service.Service.creerClient(client);
-        
-        request.setAttribute("client", client);
-        
-        vue = "WEB-INF/confirmation-inscription.jsp";
+        if(service.Service.creerClient(client)){
+            request.setAttribute("client", client);
+            vue = "WEB-INF/confirmation-inscription.jsp";
+        }
+        else {
+            vue = "WEB-INF/echec-inscription.jsp";
+        }
     }
 
+    /**
+     * Recupère la prochaine vue qui sera affichée
+     * @return 
+     */
     public String getVue() {
         return vue;
     }
