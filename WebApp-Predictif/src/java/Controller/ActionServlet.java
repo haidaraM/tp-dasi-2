@@ -7,6 +7,7 @@ package Controller;
 
 import Controller.Actions.ConnexionEmployeAction;
 import Controller.Actions.InscriptionAction;
+import Controller.Actions.PageInscriptionAction;
 import daojpa.JpaUtil;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -37,7 +38,6 @@ public class ActionServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        List<Medium> listMedium;
         List<Client> listClient;
 
         String todo = request.getParameter("todo");
@@ -45,8 +45,8 @@ public class ActionServlet extends HttpServlet {
         if (null != todo) {
             switch (todo) {
                 case "page-inscription":
-                    listMedium = service.Service.obtenirMediums();
-                    request.setAttribute("listMedium", listMedium);
+                    PageInscriptionAction pageInscriptionAction = new PageInscriptionAction();
+                    pageInscriptionAction.execute(request);
                     request.getRequestDispatcher("inscription.jsp").forward(request, response);
                     break;
                 case "traitement-inscription":
@@ -69,6 +69,7 @@ public class ActionServlet extends HttpServlet {
                     
                 case "horoscope":
                     
+                    break;
 
             }
         }

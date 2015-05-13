@@ -13,40 +13,59 @@
         <script src="inc/js/dataTables.tableTools.js"></script>
         <script src="inc/js/dataTables.bootstrap.js"></script>
 
-
-
         <script>
-             var idClient = "-1";
-
+            var idClient = "-1";
             $(document).ready(function () {
-               
+
+
+                /* met à jour la prise en compte du click */
+                function setElementClick() {
+                    $('tbody tr').click(function () {
+                        if (idClient === this.id) {
+                            idClient = "-1";
+                            $("#validation").attr("disabled", true);
+                        }
+                        else {
+                            $("#validation").attr("disabled", false);
+                            idClient = this.id;
+                            console.log(idClient);
+                        }
+                        
+
+                    });
+                }
+                
+                /* desactive le bouton au lancement de la page */
+                $("#validation").attr("disabled", true);
+
                 $('#listeClients').DataTable({
                     dom: 'T<"clear">lfrtip',
+                    "drawCallback": function (settings) {
+                        /* on demande la mise à jour a chaque nouveau rafraichissement */
+                        setElementClick();
+                    },
+                    paging: true,
                     tableTools: {
-                        "sRowSelect": "single"
+                        "sRowSelect"
+                                : "single"
                     }
                 });
+                
+                /* cache les trucs deguelasses */
                 $(".DTTT").hide();
-                
-                $('#listeClients tr').click(function(){
-                if(idClient===this.id){
-                    idClient="-1";
-                }
-                else{
-                    idClient = this.id;
-                }
-                console.log(idClient);
-                
-            });
             
+               // setElementClick();
+
+
+
             });
-            function valider(){
-                <%--TODO faire en sorte de ne pas autoriser la validation tant --%>
-                    var req = "ActionServlet?todo=horoscope?idCl="+idClient;
-                    location.replace(req);
-                
+            function valider() {
+            <%--TODO faire en sorte de ne pas autoriser la validation tant --%>
+                var req = "ActionServlet?todo=horoscope?idCl=" + idClient;
+                location.replace(req);
+
             }
-            
+
         </script>
     </head>
 
@@ -63,23 +82,21 @@
                     <th>Nom</th>
                     <th>Prénom</th>
                     <th>E-mail</th>
-                    <th>Telephone</th>
                 </tr>
             </thead>  
 
             <tbody>
                 <c:forEach var="client" items="${listClient}">
                     <c:out value="<tr id=${client.id}>" escapeXml="false" />
-                    <c:out value="<td >${client.id}</td>"escapeXml="false" />
+                    <c:out value="<td>${client.id}</td>"escapeXml="false" />
                     <c:out value="<td>${client.civilite}</td>"escapeXml="false" />
                     <c:out value="<td>${client.nom}</td>" escapeXml="false" />
                     <c:out value="<td>${client.prenom}</td>" escapeXml="false" />
                     <c:out value="<td>${client.email}</td>" escapeXml="false" />
-                    <c:out value="<td>${client.tel}</td>" escapeXml="false" />
                     <c:out value="</tr>" escapeXml="false" />
                 </c:forEach>
             </tbody>
 
-           <button id="validation" class="btn btn-success btn-lg" onclick="valider()" > Choisir ce client  </button>
-</body>
+            <button id="validation" class="btn btn-success btn-lg" onclick="valider()" > Choisir ce client  </button>
+    </body>
 </html>
