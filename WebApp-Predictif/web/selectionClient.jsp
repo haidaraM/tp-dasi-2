@@ -23,7 +23,7 @@
                 $('#listeClients').DataTable({
                     dom: 'T<"clear">lfrtip',
                     tableTools: {
-                        "sRowSelect": "single",
+                        "sRowSelect": "single"
                     }
                 });
                 $(".DTTT").hide();
@@ -50,7 +50,7 @@
         </script>
     </head>
 
-    <body>
+    <body class="container">
         <div class="page-header">
             <h1 style="text-align: center">Choisissez votre client</h1>
         </div>
@@ -71,7 +71,7 @@
                 <c:forEach var="client" items="${listClient}">
                     <c:out value="<tr id=${client.id}>" escapeXml="false" />
                     <c:out value="<td >${client.id}</td>"escapeXml="false" />
-                    <c:out value="<td>${client.civilite}</td>"escapeXml="false" />
+                    <c:out value="<td>${cient.civilite}</td>"escapeXml="false" />
                     <c:out value="<td>${client.nom}</td>" escapeXml="false" />
                     <c:out value="<td>${client.prenom}</td>" escapeXml="false" />
                     <c:out value="<td>${client.email}</td>" escapeXml="false" />
