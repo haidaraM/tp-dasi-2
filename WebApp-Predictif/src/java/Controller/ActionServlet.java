@@ -7,6 +7,7 @@ package Controller;
 
 import Controller.Actions.ConnexionEmployeAction;
 import Controller.Actions.InscriptionAction;
+import daojpa.JpaUtil;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -54,10 +55,9 @@ public class ActionServlet extends HttpServlet {
                 case "connexion-admin":
                     ConnexionEmployeAction cea = new ConnexionEmployeAction();
                     cea.execute(request);
-                    Employe emp = cea.getEmploye();
-                    /*if(emp != null){*/
-                        //listMedium = service.Service.obtenirMediums();
-                        //request.setAttribute("listMedium", listMedium);
+                    /*if(cea.connecte()){*/
+                        listMedium = service.Service.obtenirMediums();
+                        request.setAttribute("listMedium", listMedium);
                         request.getRequestDispatcher("horoscope.jsp").forward(request, response);
                     /*}
                     else{
@@ -68,6 +68,18 @@ public class ActionServlet extends HttpServlet {
                 
             }
         }
+    }
+
+    @Override
+    public void init() throws ServletException {
+        super.init(); //To change body of generated methods, choose Tools | Templates.
+        JpaUtil.init();
+    }
+
+    @Override
+    public void destroy() {
+        super.destroy(); //To change body of generated methods, choose Tools | Templates.
+        JpaUtil.destroy();
     }
 
     /**

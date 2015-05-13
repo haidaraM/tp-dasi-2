@@ -16,12 +16,17 @@ public class ConnexionEmployeAction extends Action{
         String login = request.getParameter("login");
         String motDePasse = request.getParameter("password");
         
-         employe = service.Service.connexionEmploye(login, motDePasse);
+        employe = service.Service.connexionEmploye(login, motDePasse);
         
     }
     
-    public Employe getEmploye(){
+    public boolean connecte(){
         
-        return employe;
+        if(employe != null){  
+            return true;
+        } 
+        else{
+            return false;
+        }
     }
 }

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -23,7 +24,7 @@
                             <label for="medium" class="col-md-4">Medium </label>
                             <div class="col-md-7"> 
                                 <select class="form-control" name="medium" id="medium">
-                                    <c:forEach var="medium" items="${listMedium}">
+                                <c:forEach var="medium" items="${listMedium}">
                                     <c:out value="<option value=${medium.id}> " escapeXml="false" />
                                     <c:out value="${medium.nom}" />
                                     <c:out value="</option>" escapeXml="false"/>
