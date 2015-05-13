@@ -5,9 +5,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Predict'if - Inscription</title>
-        <link href="inc/css/bootstrap.min.css" rel="stylesheet">
+        <link href="inc/css/bootstrap.min.css" rel="stylesheet"/>
         <script src="inc/js/jquery-1.11.2.min.js"></script>
         <script src="inc/js/bootstrap.min.js"></script>
+       
     </head>
     <body class="container">
         <div class="row">
@@ -118,9 +119,9 @@
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="mediums" class="col-md-4">Médiums préférés </label>
+                        <label for="mediums" class="col-md-6">Médiums préférés </label>
                         <div class="col-md-8"> 
-                            <select multiple class="form-control" name="mediums" id="mediums" required>
+                            <select multiple class="form-control" name="mediums" id="mediums" style="height: 100%" required size="20">
                                 <c:forEach var="medium" items="${listMedium}">
                                     <c:out value="<option value=${medium.id}> " escapeXml="false" />
                                     <c:out value="${medium.nom}" />
