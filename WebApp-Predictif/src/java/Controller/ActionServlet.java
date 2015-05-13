@@ -39,9 +39,9 @@ public class ActionServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         List<Medium> listMedium;
         List<Client> listClient;
-        
+
         String todo = request.getParameter("todo");
-        
+
         if (null != todo) {
             switch (todo) {
                 case "page-inscription":
@@ -57,17 +57,19 @@ public class ActionServlet extends HttpServlet {
                 case "connexion-admin":
                     ConnexionEmployeAction cea = new ConnexionEmployeAction();
                     cea.execute(request);
-                    /*if(cea.connecte()){*/
+                    if (cea.connecte()) {
                         listClient = service.Service.obtenirClients();
                         request.setAttribute("listClient", listClient);
                         request.getRequestDispatcher("selectionClient.jsp").forward(request, response);
-                    /*}
-                    else{
-                        request.getRequestDispatcher("horoscope.jsp").forward(request, response);
-                    }*/
-                    
+                    } else {
+                        request.getRequestDispatcher("index.jsp").forward(request, response);
+                    }
+
                     break;
-                
+                    
+                case "horoscope":
+                    
+
             }
         }
     }

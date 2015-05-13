@@ -16,7 +16,7 @@
 
 
         <script>
-             var idMedium = "-1";
+             var idClient = "-1";
 
             $(document).ready(function () {
                
@@ -26,21 +26,23 @@
                         "sRowSelect": "single",
                     }
                 });
+                $(".DTTT").hide();
+                
                 $('#listeClients tr').click(function(){
-                if(idMedium===this.id){
-                    idMedium="-1";
+                if(idClient===this.id){
+                    idClient="-1";
                 }
                 else{
-                    idMedium = this.id;
+                    idClient = this.id;
                 }
-                console.log(idMedium);
+                console.log(idClient);
                 
             });
             
             });
             function valider(){
                 <%--TODO faire en sorte de ne pas autoriser la validation tant --%>
-                    var req = "ActionServlet?todo=horoscope?idMed="+idMedium;
+                    var req = "ActionServlet?todo=horoscope?idCl="+idClient;
                     location.replace(req);
                 
             }
