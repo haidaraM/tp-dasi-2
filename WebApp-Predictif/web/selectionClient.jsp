@@ -14,63 +14,33 @@
         <script src="inc/js/dataTables.bootstrap.js"></script>
 
         <script>
-
             $(document).ready(function () {
-                /* desactive le bouton au lancement de la page */
-                $("#validation").attr("disabled", true);
                 
+                $('#validation').attr('disabled',true);
                 
-                var idClient = 0;
+                var table = $('#listeClients').DataTable();
 
-                /* fonction mettant à jour le href bouton */
-                function MajButton(monId) {
-
-                    var newUrl = "ActionServlet?todo=horoscope&idCl=" + monId;
-                    $("#validation").attr("href", newUrl);
-                }
-
-                /* TODO : il y'a un petit bug qui traine encore quand on selectionne
-                 client et change de page dans la datatable */
-
-                /* met à jour la prise en compte du click */
-                function setElementClick() {
-                    console.log("Valeur idClient : " + idClient);
-                    $('tbody tr').click(function () {
-                        if (idClient === this.id) {
-                            idClient = 0;
-                            $("#validation").attr("disabled", true);
-                        }
-                        else {
-                            idClient = this.id;
-                            MajButton(idClient);
-                            $("#validation").attr("disabled", false);
-                            console.log(idClient);
-                        }
-                       // console.log(idClient);
-                    });
-                }
-
-                /* initialisation de la datatable */
-                $('#listeClients').DataTable({
-                    dom: 'T<"clear">lfrtip',
-                    "drawCallback": function () {
-                        /* on demande la mise à jour a chaque nouveau rafraichissement */
-                        setElementClick();
-                    },
-                    paging: false,
-                    scrollY: 400,
-                    tableTools: {
-                        "sRowSelect"
-                                : "single"
+                $('#listeClients tbody').on('click', 'tr', function () {
+                    if ($(this).hasClass('active')) {
+                        $(this).removeClass('active');
+                        $('#validation').attr('disabled',true);
                     }
-                    
+                    else {
+                        $('tbody tr').each(function (){
+                            $(this).removeClass('active');
+                        });
+                        $('#validation').attr('disabled', false);
+                        console.log(this.id);
+                        majLien(this.id);
+                        $(this).addClass('active');
+                    }
                 });
-
-                /* cache les trucs deguelasses : PDF, CSV et tout ça */
-                $(".DTTT").hide();
-
-
-
+                
+                function majLien(idClient){
+                    var newUrl = "ActionServlet?todo=horoscope&idCl="+ idClient;
+                    $('#validation').attr('href',newUrl);
+                }
+               
             });
 
         </script>
