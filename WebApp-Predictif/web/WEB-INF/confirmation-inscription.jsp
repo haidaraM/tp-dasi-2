@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -11,7 +12,13 @@
             <h1 style="text-align: center">Confirmation inscription</h1>
         </div>
 
-        
+        <div class="alert alert-success">
+            <strong>Success!</strong> Nous confirmons la création de votre compte.
+            Un email de confirmation vient d'être envoyé à l'adresse suivante : 
+            <strong>
+                <c:out value="${clientInscrit.email}" />  </strong>
+        </div>
+
         <a href="index.jsp" class="btn btn-default">Retour à la page d'accueil</a>
 
     </body>

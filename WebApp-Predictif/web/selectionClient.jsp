@@ -10,7 +10,6 @@
         <link href="inc/css/dataTables.bootstrap.css" rel="stylesheet">
         <script src="inc/js/jquery-1.11.2.min.js"></script>
         <script src="inc/js/jquery.dataTables.min.js"></script>
-        <script src="inc/js/dataTables.tableTools.js"></script>
         <script src="inc/js/dataTables.bootstrap.js"></script>
 
         <script>

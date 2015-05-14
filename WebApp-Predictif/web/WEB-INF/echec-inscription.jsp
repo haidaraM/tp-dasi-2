@@ -16,8 +16,7 @@
         <div class="alert alert-danger" role="alert">
                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                 <span class="sr-only">Error:</span>
-                Impossible de créer votre compte. On ne sait pas trop pourquoi. En principe ce n'est pas censé arrivé
-                compte tenu des spécifications reçues.
+                                Echec lors de la création de votre compte.
             </div>
         
         <a href="index.jsp" class="btn btn-default">Retour à la page d'accueil</a>

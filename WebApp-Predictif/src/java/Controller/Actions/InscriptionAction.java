@@ -56,7 +56,7 @@ public class InscriptionAction extends Action {
         Client client = new Client(nom, prenom, civilite, date, adresse, telephone, courriel, listMedium);
 
         if (service.Service.creerClient(client)) {
-            request.setAttribute("client", client);
+            request.setAttribute("clientInscrit", client);
             vue = "WEB-INF/confirmation-inscription.jsp";
         } else {
             vue = "WEB-INF/echec-inscription.jsp";
