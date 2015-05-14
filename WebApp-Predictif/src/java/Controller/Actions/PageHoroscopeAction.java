@@ -26,8 +26,8 @@ public class PageHoroscopeAction extends Action{
         //TODO : peut être faire des vérifications sur les valeurs reçues
         
         // on met ça dans la requête pour l'envoyer à la page
-        request.setAttribute("client", client);
-        request.setAttribute("listMedium", listMedium);
+        request.setAttribute("clientChoisi", client);
+        request.setAttribute("listMediumClient", listMedium);
     }
     
 }
