@@ -14,30 +14,39 @@
         <script src="inc/js/dataTables.bootstrap.js"></script>
 
         <script>
-            var idClient = "-1";
-            $(document).ready(function () {
 
+            $(document).ready(function () {
+                /* desactive le bouton au lancement de la page */
+                $("#validation").attr("disabled", true);
+                
+                
+                var idClient = 0;
+
+                /* fonction mettant à jour le href bouton */
+                function MajButton(monId) {
+
+                    var newUrl = "ActionServlet?todo=horoscope&idCl=" + monId;
+                    $("#validation").attr("href", newUrl);
+                }
 
                 /* TODO : il y'a un petit bug qui traine encore quand on selectionne
                  client et change de page dans la datatable */
 
-                /* desactive le bouton au lancement de la page */
-                $("#validation").attr("disabled", true);
-
                 /* met à jour la prise en compte du click */
                 function setElementClick() {
+                    console.log("Valeur idClient : " + idClient);
                     $('tbody tr').click(function () {
                         if (idClient === this.id) {
-                            idClient = "-1";
+                            idClient = 0;
                             $("#validation").attr("disabled", true);
                         }
                         else {
-                            $("#validation").attr("disabled", false);
                             idClient = this.id;
-                            MajButton();
-                            //console.log(idClient);
+                            MajButton(idClient);
+                            $("#validation").attr("disabled", false);
+                            console.log(idClient);
                         }
-                        console.log(idClient);
+                       // console.log(idClient);
                     });
                 }
 
@@ -58,11 +67,7 @@
                 /* cache les trucs deguelasses : PDF, CSV et tout ça */
                 $(".DTTT").hide();
 
-                /* fonction mettant à jour le href bouton */
-                function MajButton() {
-                    var newUrl = "ActionServlet?todo=horoscope=?idCl=" + idClient;
-                    $("#validation").attr("href", newUrl);
-                }
+
 
             });
 
@@ -76,7 +81,7 @@
 
         <div class="row">
             <div class="col-md-offset-5 col-md-6">
-                <a class="btn btn-success btn-lg" disabled id="validation">Choisir ce client </a>
+                <a class="btn btn-success btn-lg" id="validation">Choisir ce client </a>
             </div>
 
         </div>

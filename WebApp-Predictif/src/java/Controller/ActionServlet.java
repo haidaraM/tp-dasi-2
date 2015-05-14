@@ -7,6 +7,7 @@ package Controller;
 
 import Controller.Actions.ConnexionEmployeAction;
 import Controller.Actions.InscriptionAction;
+import Controller.Actions.PageHoroscopeAction;
 import Controller.Actions.PageInscriptionAction;
 import daojpa.JpaUtil;
 import java.io.IOException;
@@ -68,7 +69,9 @@ public class ActionServlet extends HttpServlet {
                     break;
                     
                 case "horoscope":
-                    
+                    PageHoroscopeAction pageHoroscopeAction = new PageHoroscopeAction();
+                    pageHoroscopeAction.execute(request);
+                    request.getRequestDispatcher("horoscope.jsp").forward(request, response);
                     break;
 
             }
