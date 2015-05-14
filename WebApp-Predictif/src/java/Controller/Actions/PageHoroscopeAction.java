@@ -9,6 +9,10 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import modele.Client;
 import modele.Medium;
+import modele.Prediction;
+import modele.Prediction_Amour;
+import modele.Prediction_Sante;
+import modele.Prediction_Travail;
 
 /**
  *
@@ -21,13 +25,19 @@ public class PageHoroscopeAction extends Action{
         // on recupère l'id du client
         int idClient = Integer.parseInt(request.getParameter("idCl"));
         Client client = service.Service.obtenirClientById(idClient);
-        List<Medium> listMedium = service.Service.obtenirMediumByClient(idClient);
+        List<Medium> listMedium = service.Service.obtenirMediumByClient(idClient); 
+        
+        List<Prediction_Amour> listPredictionAmour = service.Service.obtenirPredictionsAmour();
+        List<Prediction_Sante> listPredictionSante = service.Service.obtenirPredictionsSante();
+        List<Prediction_Travail> listPredictionTravail = service.Service.obtenirPredictionsTravail();
+        
         
         //TODO : peut être faire des vérifications sur les valeurs reçues
         
         // on met ça dans la requête pour l'envoyer à la page
         request.setAttribute("clientChoisi", client);
         request.setAttribute("listMediumClient", listMedium);
+        request.setAttribute("listPredictionSante", listPredictionSante);
     }
     
 }

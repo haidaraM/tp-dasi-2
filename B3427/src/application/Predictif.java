@@ -251,6 +251,7 @@ public class Predictif {
             pdj.createPredictionSante(new Prediction_Sante('☼', (i % 4) + 1, predictions.get(i), conseils.get(i)));
         }
 
+        Prediction_Sante prediction_Sante = new Prediction_Sante();
         JpaUtil.validerTransaction();
 
     }

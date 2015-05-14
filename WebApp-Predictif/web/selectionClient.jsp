@@ -17,7 +17,7 @@
                 
                 $('#validation').attr('disabled',true);
                 
-                var table = $('#listeClients').DataTable();
+                $('#listeClients').DataTable();
 
                 $('#listeClients tbody').on('click', 'tr', function () {
                     if ($(this).hasClass('active')) {
@@ -41,7 +41,6 @@
                 }
                
             });
-
         </script>
     </head>
 
@@ -80,6 +79,7 @@
                         </tr>
                     </c:forEach>
                 </tbody>
+            </table>
         </div>
 
     </body>

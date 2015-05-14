@@ -64,6 +64,10 @@ public class Prediction implements Serializable {
         return true;
     }
 
+    public int getNiveau() {
+        return niveau;
+    }
+
     @Override
     public String toString() {
         return "predictif.Prediction[ id=" + id + " ]";

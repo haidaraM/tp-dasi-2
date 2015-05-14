@@ -6,12 +6,62 @@
         <title>Création d'un horoscope</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="inc/css/bootstrap.min.css" rel="stylesheet">
+        <link href="inc/css/dataTables.bootstrap.css" rel="stylesheet">
         <script src="inc/js/jquery-1.11.2.min.js"></script>
-        <script src="inc/js/bootstrap.js"></script>
-        <link href="inc/css/custom.css" rel="stylesheet">
+        <script src="inc/js/jquery.dataTables.min.js"></script>
+        <script src="inc/js/dataTables.bootstrap.js"></script>
+
+        <script>
+            $(document).ready(function () {
+
+                // $('#validation').attr('disabled',true);
+
+                $('#listPrediction').DataTable({
+                    scrollY: 402,
+                    paging: false,
+                    "columnDefs": [
+                        {"width": "10%", "targets": 0},
+                        {"width": "5%", "targets": 1}
+                    ]
+                });
+
+                $('#listPrediction tbody').on('click', 'tr', function () {
+                    if ($(this).hasClass('active')) {
+                        $(this).removeClass('active');
+                        supprimerTexte();
+                    }
+                    else {
+                        $('tbody tr').each(function () {
+                            $(this).removeClass('active');
+                        });
+                        majTexteEtButton($(this).find('.monTexte').text());
+                        
+                        $(this).addClass('active');
+                    }
+                });
+
+                /* fais la mise à jour de la partie texte à gauche et le bouton */
+                function majTexteEtButton(nouveauTexte){
+                    $('#aRemplacer').text(nouveauTexte);
+                }
+                
+                /* supprime le texte de la zone à gauche */
+                function supprimerTexte(){
+                    $('#aRemplacer').text('');
+                }
+
+                function majLien(idClient) {
+                    var newUrl = "ActionServlet?todo=horoscope&idCl=" + idClient;
+                    $('#validation').attr('href', newUrl);
+                }
+
+            });
+        </script>
+
     </head>
 
     <body class="container">
+        <br/>
         <form class="form-horizontal" action="ActionServlet" method="POST">
             <input type="hidden" name="todo" value="horoscope">
             <div class="row">
@@ -40,16 +90,13 @@
                                 </select>
                             </div>
                         </div>
-
-
                     </fieldset>
 
                     <br/>
                     <div class="form-group">
                         <label for="prediction" class ="col-md-3">Prédiction</label>
                         <div class="col-md-8">
-                            <textarea class="form-control" readonly="readonly" name="prediction" rows="8">
-        lorem ipsum ...... TODO TO COMPLETE
+                            <textarea id="aRemplacer" class="form-control" readonly="readonly" name="prediction" rows="8">
                             </textarea>
                         </div>
                         <button class="btn btn-default">Choisir</button>
@@ -80,7 +127,38 @@
                 </div>
 
                 <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <a class="btn btn-default" href="#">Voir historique</a>
+                        </div>
+                        <div class="col-md-4">
+                            <div id="titre">Sélection prédictions</div>
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                        <table id="listPrediction" class="table table-striped table-bordered" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Ref</th>
+                                    <th>Niveau</th>
+                                    <th>Conseil</th>
+                                    <th>Texte</th>
+                                </tr>
+                            </thead>  
 
+                            <tbody>
+                                <c:forEach var="prediction" items="${listPredictionSante}">
+                                    <tr id=${prediction.id}>
+                                        <td>${prediction.id}</td>
+                                        <td>${prediction.niveau}</td>
+                                        <td>${prediction.conseil}</td>
+                                        <td class="monTexte">${prediction.texte}</td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
