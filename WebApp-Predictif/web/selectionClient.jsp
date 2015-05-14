@@ -57,11 +57,13 @@
                         /* on demande la mise à jour a chaque nouveau rafraichissement */
                         setElementClick();
                     },
-                    paging: true,
+                    paging: false,
+                    scrollY: 400,
                     tableTools: {
                         "sRowSelect"
                                 : "single"
                     }
+                    
                 });
 
                 /* cache les trucs deguelasses : PDF, CSV et tout ça */
