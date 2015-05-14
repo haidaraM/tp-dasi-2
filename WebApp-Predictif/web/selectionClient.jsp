@@ -18,6 +18,12 @@
             $(document).ready(function () {
 
 
+                /* TODO : il y'a un petit bug qui traine encore quand on selectionne
+                 client et change de page dans la datatable */
+
+                /* desactive le bouton au lancement de la page */
+                $("#validation").attr("disabled", true);
+
                 /* met à jour la prise en compte du click */
                 function setElementClick() {
                     $('tbody tr').click(function () {
@@ -28,19 +34,17 @@
                         else {
                             $("#validation").attr("disabled", false);
                             idClient = this.id;
-                            console.log(idClient);
+                            MajButton();
+                            //console.log(idClient);
                         }
-                        
-
+                        console.log(idClient);
                     });
                 }
-                
-                /* desactive le bouton au lancement de la page */
-                $("#validation").attr("disabled", true);
 
+                /* initialisation de la datatable */
                 $('#listeClients').DataTable({
                     dom: 'T<"clear">lfrtip',
-                    "drawCallback": function (settings) {
+                    "drawCallback": function () {
                         /* on demande la mise à jour a chaque nouveau rafraichissement */
                         setElementClick();
                     },
@@ -50,21 +54,17 @@
                                 : "single"
                     }
                 });
-                
-                /* cache les trucs deguelasses */
+
+                /* cache les trucs deguelasses : PDF, CSV et tout ça */
                 $(".DTTT").hide();
-            
-               // setElementClick();
 
-
+                /* fonction mettant à jour le href bouton */
+                function MajButton() {
+                    var newUrl = "ActionServlet?todo=horoscope=?idCl=" + idClient;
+                    $("#validation").attr("href", newUrl);
+                }
 
             });
-            function valider() {
-            <%--TODO faire en sorte de ne pas autoriser la validation tant --%>
-                var req = "ActionServlet?todo=horoscope?idCl=" + idClient;
-                location.replace(req);
-
-            }
 
         </script>
     </head>
@@ -74,29 +74,37 @@
             <h1 style="text-align: center">Choisissez votre client</h1>
         </div>
 
-        <table id="listeClients" class="table table-striped table-bordered" cellspacing="0" width="100%">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Civilité</th>
-                    <th>Nom</th>
-                    <th>Prénom</th>
-                    <th>E-mail</th>
-                </tr>
-            </thead>  
+        <div class="row">
+            <div class="col-md-offset-5 col-md-6">
+                <a class="btn btn-success btn-lg" disabled id="validation">Choisir ce client </a>
+            </div>
 
-            <tbody>
-                <c:forEach var="client" items="${listClient}">
-                    <c:out value="<tr id=${client.id}>" escapeXml="false" />
-                    <c:out value="<td>${client.id}</td>"escapeXml="false" />
-                    <c:out value="<td>${client.civilite}</td>"escapeXml="false" />
-                    <c:out value="<td>${client.nom}</td>" escapeXml="false" />
-                    <c:out value="<td>${client.prenom}</td>" escapeXml="false" />
-                    <c:out value="<td>${client.email}</td>" escapeXml="false" />
-                    <c:out value="</tr>" escapeXml="false" />
-                </c:forEach>
-            </tbody>
+        </div>
 
-            <button id="validation" class="btn btn-success btn-lg" onclick="valider()" > Choisir ce client  </button>
+        <div class="row">
+            <table id="listeClients" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Civilité</th>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>E-mail</th>
+                    </tr>
+                </thead>  
+
+                <tbody>
+                    <c:forEach var="client" items="${listClient}">
+                        <tr id=${client.id}>
+                            <td>${client.id}</td>
+                            <td>${client.civilite}</td>
+                            <td>${client.nom}</td>
+                            <td>${client.prenom}</td>
+                            <td>${client.email}</td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+        </div>
+
     </body>
 </html>

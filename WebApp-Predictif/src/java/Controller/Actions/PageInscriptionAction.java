@@ -20,7 +20,6 @@ public class PageInscriptionAction extends Action{
     public void execute(HttpServletRequest request) {
         List<Medium> listMedium = service.Service.obtenirMediums();
         request.setAttribute("listMedium", listMedium);
-        
     }
     
 }

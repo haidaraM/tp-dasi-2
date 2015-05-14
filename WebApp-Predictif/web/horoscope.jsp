@@ -17,7 +17,6 @@
             <div class="row">
                 <br/>
                 <div class="col-md-4">
-
                     <fieldset>
                         <legend>Infos Client</legend> 
                         <div class="form-group"> 
