@@ -58,12 +58,11 @@ public class ActionServlet extends HttpServlet {
                     request.getRequestDispatcher(cea.getVue()).forward(request, response);
                     break;
                 case "horoscope":
-                    if (request.getRemoteUser()!=null){ //on vérifie que l'usager est bien identifié
-                    PageHoroscopeAction pageHoroscopeAction = new PageHoroscopeAction();
-                    pageHoroscopeAction.execute(request);
-                    request.getRequestDispatcher("horoscope.jsp").forward(request, response);
-                    }
-                    else{       //ou on le redirige vers la page de connexion
+                    if (request.getRemoteUser() != null) { //on vérifie que l'usager est bien identifié
+                        PageHoroscopeAction pageHoroscopeAction = new PageHoroscopeAction();
+                        pageHoroscopeAction.execute(request);
+                        request.getRequestDispatcher("horoscope.jsp").forward(request, response);
+                    } else {       //ou on le redirige vers la page de connexion
                         request.getRequestDispatcher("index.jsp").forward(request, response);
                     }
                     break;
@@ -73,13 +72,13 @@ public class ActionServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        super.init(); 
+        super.init();
         JpaUtil.init();
     }
 
     @Override
     public void destroy() {
-        super.destroy(); 
+        super.destroy();
         JpaUtil.destroy();
     }
 
