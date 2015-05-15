@@ -61,6 +61,7 @@ public class InscriptionAction extends Action {
         } else {
             vue = "WEB-INF/echec-inscription.jsp";
         }
+        
     }
 
     /**

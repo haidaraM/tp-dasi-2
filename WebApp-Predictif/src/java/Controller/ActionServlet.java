@@ -11,15 +11,12 @@ import Controller.Actions.PageHoroscopeAction;
 import Controller.Actions.PageInscriptionAction;
 import daojpa.JpaUtil;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modele.Client;
-import modele.Employe;
-import modele.Medium;
 
 /**
  *
@@ -58,14 +55,7 @@ public class ActionServlet extends HttpServlet {
                 case "connexion-admin":
                     ConnexionEmployeAction cea = new ConnexionEmployeAction();
                     cea.execute(request);
-                    if (cea.connecte()) {
-                        listClient = service.Service.obtenirClients();
-                        request.setAttribute("listClient", listClient);
-                        request.getRequestDispatcher("selectionClient.jsp").forward(request, response);
-                    } else {
-                        request.getRequestDispatcher("index.jsp").forward(request, response);
-                    }
-
+                    request.getRequestDispatcher(cea.getVue()).forward(request, response);
                     break;
                     
                 case "horoscope":
