@@ -1,6 +1,9 @@
 package Controller.Actions;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import modele.Client;
 import modele.Employe;
@@ -23,6 +26,7 @@ public class ConnexionEmployeAction extends Action {
 
         employe = service.Service.connexionEmploye(login, motDePasse);
         if (connecte()) {
+            request.getSession(true);
             List<Client> listClient = service.Service.obtenirClients();
             request.setAttribute("listClient", listClient);
             vue = "selectionClient.jsp";
