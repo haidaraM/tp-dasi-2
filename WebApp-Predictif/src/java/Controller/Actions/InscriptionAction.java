@@ -43,7 +43,7 @@ public class InscriptionAction extends Action {
     @Override
     public void execute(HttpServletRequest request) {
 
-        // TODO : vérification des paramètres reçues
+        // TODO : vérification des paramètres reçues et traiter les erreurs
         
         String civilite = request.getParameter(ATT_CIVILITE);
         String nom = request.getParameter(ATT_NOM);
@@ -54,10 +54,12 @@ public class InscriptionAction extends Action {
         int annee_naissance = Integer.parseInt(request.getParameter(ATT_A_NAISSANCE));
         Calendar date = new GregorianCalendar(annee_naissance, mois_naissance, jour_naissance);
 
-        // TODO : traiter les erreurs
+        
         
         String adresse = request.getParameter(ATT_ADRESSE) + " " + request.getParameter(ATT_ADRESSE2);
 
+        System.out.println("Adresse : '"+ adresse+"'");
+        
         String telephone = request.getParameter(ATT_TELEPHONE);
         String courriel = request.getParameter(ATT_COURIEL);
         List<Medium> listMedium = new ArrayList<>();

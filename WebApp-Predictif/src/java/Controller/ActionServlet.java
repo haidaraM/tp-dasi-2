@@ -36,8 +36,7 @@ public class ActionServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        List<Client> listClient;
-
+        
         String todo = request.getParameter("todo");
 
         if (null != todo) {
@@ -58,7 +57,7 @@ public class ActionServlet extends HttpServlet {
                     request.getRequestDispatcher(cea.getVue()).forward(request, response);
                     break;
                 case "horoscope":
-                    if (request.getSession().getAttribute(ConnexionEmployeAction.ATT_EMPLOYE) != null) { //on vérifie que l'usager est bien identifié
+                    if (request.getSession(true).getAttribute(ConnexionEmployeAction.ATT_EMPLOYE) != null) { //on vérifie que l'usager est bien identifié
                         PageHoroscopeAction pageHoroscopeAction = new PageHoroscopeAction();
                         pageHoroscopeAction.execute(request);
                         request.getRequestDispatcher("horoscope.jsp").forward(request, response);
