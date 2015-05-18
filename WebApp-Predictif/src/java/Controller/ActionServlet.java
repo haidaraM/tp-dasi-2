@@ -60,7 +60,7 @@ public class ActionServlet extends HttpServlet {
                     if (request.getSession(true).getAttribute(ConnexionEmployeAction.ATT_EMPLOYE) != null) { //on vérifie que l'usager est bien identifié
                         PageHoroscopeAction pageHoroscopeAction = new PageHoroscopeAction();
                         pageHoroscopeAction.execute(request);
-                        request.getRequestDispatcher("horoscope.jsp").forward(request, response);
+                        request.getRequestDispatcher("WEB-INF/horoscope.jsp").forward(request, response);
                     } else {       //ou on le redirige vers la page de connexion
                         request.getRequestDispatcher("index.jsp").forward(request, response);
                     }
