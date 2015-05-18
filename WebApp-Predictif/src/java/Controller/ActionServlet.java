@@ -58,7 +58,7 @@ public class ActionServlet extends HttpServlet {
                     request.getRequestDispatcher(cea.getVue()).forward(request, response);
                     break;
                 case "horoscope":
-                    if (request.getRemoteUser() != null) { //on vérifie que l'usager est bien identifié
+                    if (request.getSession().getAttribute(ConnexionEmployeAction.ATT_EMPLOYE) != null) { //on vérifie que l'usager est bien identifié
                         PageHoroscopeAction pageHoroscopeAction = new PageHoroscopeAction();
                         pageHoroscopeAction.execute(request);
                         request.getRequestDispatcher("horoscope.jsp").forward(request, response);

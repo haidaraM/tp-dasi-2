@@ -15,11 +15,12 @@ import modele.Medium;
  */
 public class PageInscriptionAction extends Action{
 
+    public static final String ATT_MEDIUMS = "listMedium";
    
     @Override
     public void execute(HttpServletRequest request) {
         List<Medium> listMedium = service.Service.obtenirMediums();
-        request.setAttribute("listMedium", listMedium);
+        request.setAttribute(ATT_MEDIUMS, listMedium);
     }
     
 }

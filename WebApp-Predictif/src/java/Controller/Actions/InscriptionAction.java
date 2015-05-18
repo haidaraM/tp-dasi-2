@@ -21,6 +21,21 @@ import modele.Medium;
 public class InscriptionAction extends Action {
 
     /**
+     * Constantes pour recuperer les paramètres
+     */
+    public static final String ATT_CIVILITE = "civilite";
+    public static final String ATT_NOM  = "nom";
+    public static final String ATT_PRENOM  = "prenom";
+    public static final String ATT_J_NAISSANCE  = "jour_naissance";
+    public static final String ATT_M_NAISSANCE  = "mois_naissance";
+    public static final String ATT_A_NAISSANCE  = "annee_naissance";
+    public static final String ATT_ADRESSE = "adresse";
+    public static final String ATT_ADRESSE2 = "adresse2";
+    public static final String ATT_TELEPHONE = "telephone";
+    public static final String ATT_COURIEL = "couriel";
+    public static final String ATT_MEDIUMS = "mediums";
+    
+    /**
      * Représente la vue qui sera affichée par l'action servlet
      */
     private String vue;
@@ -30,23 +45,23 @@ public class InscriptionAction extends Action {
 
         // TODO : vérification des paramètres reçues
         
-        String civilite = request.getParameter("civilite");
-        String nom = request.getParameter("nom");
-        String prenom = request.getParameter("prenom");
+        String civilite = request.getParameter(ATT_CIVILITE);
+        String nom = request.getParameter(ATT_NOM);
+        String prenom = request.getParameter(ATT_PRENOM);
 
-        int jour_naissance = Integer.parseInt(request.getParameter("jour_naissance"));
-        int mois_naissance = Integer.parseInt(request.getParameter("mois_naissance")) - 1;
-        int annee_naissance = Integer.parseInt(request.getParameter("annee_naissance"));
+        int jour_naissance = Integer.parseInt(request.getParameter(ATT_J_NAISSANCE));
+        int mois_naissance = Integer.parseInt(request.getParameter(ATT_M_NAISSANCE)) - 1;
+        int annee_naissance = Integer.parseInt(request.getParameter(ATT_A_NAISSANCE));
         Calendar date = new GregorianCalendar(annee_naissance, mois_naissance, jour_naissance);
 
+        // TODO : traiter les erreurs
         
-        
-        String adresse = request.getParameter("adresse") + " " + request.getParameter("adresse2");
+        String adresse = request.getParameter(ATT_ADRESSE) + " " + request.getParameter(ATT_ADRESSE2);
 
-        String telephone = request.getParameter("telephone");
-        String courriel = request.getParameter("courriel");
+        String telephone = request.getParameter(ATT_TELEPHONE);
+        String courriel = request.getParameter(ATT_COURIEL);
         List<Medium> listMedium = new ArrayList<>();
-        String[] mediums = request.getParameterValues("mediums");
+        String[] mediums = request.getParameterValues(ATT_MEDIUMS);
 
         for (String nomMedium : mediums) {
             Long idMedium = Long.parseLong(nomMedium);

@@ -35,18 +35,18 @@
                             $(this).removeClass('active');
                         });
                         majTexteEtButton($(this).find('.monTexte').text());
-                        
+
                         $(this).addClass('active');
                     }
                 });
 
                 /* fais la mise à jour de la partie texte à gauche et le bouton */
-                function majTexteEtButton(nouveauTexte){
+                function majTexteEtButton(nouveauTexte) {
                     $('#aRemplacer').text(nouveauTexte);
                 }
-                
+
                 /* supprime le texte de la zone à gauche */
-                function supprimerTexte(){
+                function supprimerTexte() {
                     $('#aRemplacer').text('');
                 }
 
@@ -134,7 +134,7 @@
                         <div class="col-md-4">
                             <div id="titre">Sélection prédictions</div>
                         </div>
-                        
+
                     </div>
                     <div class="row">
                         <table id="listPrediction" class="table table-striped table-bordered" width="100%">

@@ -19,6 +19,12 @@ import modele.Prediction_Travail;
  * @author elmhaidara
  */
 public class PageHoroscopeAction extends Action{
+    
+    public static final String ATT_CLIENT_CHOISI = "clientChoisi"; 
+    public static final String ATT_MEDIUMS = "listMediumClient";
+    public static final String ATT_PREDIC_SANTE = "listPredictionSante";
+    public static final String ATT_PREDIC_AMOUR = "listPredictionAmour";
+    public static final String ATT_PREDIC_TRAVAIL = "listPredictionTravail";
 
     @Override
     public void execute(HttpServletRequest request) {
@@ -35,9 +41,9 @@ public class PageHoroscopeAction extends Action{
         //TODO : peut être faire des vérifications sur les valeurs reçues
         
         // on met ça dans la requête pour l'envoyer à la page
-        request.setAttribute("clientChoisi", client);
-        request.setAttribute("listMediumClient", listMedium);
-        request.setAttribute("listPredictionSante", listPredictionSante);
+        request.setAttribute(ATT_CLIENT_CHOISI, client);
+        request.setAttribute(ATT_MEDIUMS, listMedium);
+        request.setAttribute(ATT_PREDIC_SANTE, listPredictionSante);
     }
     
 }

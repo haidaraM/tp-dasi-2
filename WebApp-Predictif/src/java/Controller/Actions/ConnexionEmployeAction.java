@@ -5,6 +5,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import modele.Client;
 import modele.Employe;
 
@@ -15,6 +16,8 @@ import modele.Employe;
  */
 public class ConnexionEmployeAction extends Action {
 
+    public static final String ATT_EMPLOYE = "employe";
+    
     Employe employe;
     String vue;
 
@@ -26,7 +29,10 @@ public class ConnexionEmployeAction extends Action {
 
         employe = service.Service.connexionEmploye(login, motDePasse);
         if (connecte()) {
-            request.getSession(true);
+            HttpSession session =  request.getSession(true);
+            
+            session.setAttribute(ATT_EMPLOYE, employe);
+            
             List<Client> listClient = service.Service.obtenirClients();
             request.setAttribute("listClient", listClient);
             vue = "selectionClient.jsp";
