@@ -35,7 +35,7 @@ public class ConnexionEmployeAction extends Action {
             
             List<Client> listClient = service.Service.obtenirClients();
             request.setAttribute("listClient", listClient);
-            vue = "selectionClient.jsp";
+            vue = "WEB-INF/selectionClient.jsp";
         } else {
             vue = "index.jsp";
         }
