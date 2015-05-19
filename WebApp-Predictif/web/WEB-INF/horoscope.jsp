@@ -31,9 +31,8 @@
                         supprimerTexte();
                     }
                     else {
-                        $('tbody tr').each(function () {
-                            $(this).removeClass('active');
-                        });
+                        $('tr.active').removeClass('active');
+
                         majTexteEtButton($(this).find('.monTexte').text());
 
                         $(this).addClass('active');
@@ -63,7 +62,7 @@
     <body class="container">
         <br/>
         <form class="form-horizontal" action="ActionServlet" method="POST">
-            <input type="hidden" name="todo" value="horoscope">
+            <input type="hidden" name="todo" value="horoscope-validation">
             <div class="row">
                 <br/>
                 <div class="col-md-4">
@@ -123,6 +122,7 @@
                             </div>
                         </div>
                     </fieldset>
+                    <br/>
 
                 </div>
 
@@ -149,15 +149,31 @@
 
                             <tbody>
                                 <c:forEach var="prediction" items="${listPredictionSante}">
-                                    <tr id=${prediction.id}>
+                                    <tr style="max-height: 4px  !important" id=${prediction.id}>
                                         <td>${prediction.id}</td>
                                         <td>${prediction.niveau}</td>
                                         <td>${prediction.conseil}</td>
-                                        <td class="monTexte">${prediction.texte}</td>
+                                        <td  class="monTexte">${prediction.texte}</td>
                                     </tr>
                                 </c:forEach>
                             </tbody>
                         </table>
+                    </div>
+
+                    <div class="col-md-offset-4">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <button type="submit" class="btn">
+                                    <img src="inc/img/checkmark-circled-512px.png" width="40" height="40"></button>
+
+                            </div>
+                            <div class="col-md-1">
+                                <button class="btn"> 
+                                    <img src="inc/img/icon_close_alt-512px.png" width="36" height="36"> 
+                                </button>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
