@@ -18,7 +18,7 @@
                 $('#choisir').attr('disabled', true);
                 
                 $('#listPrediction').DataTable({
-                    scrollY: 440,
+                    scrollY: 405,
                     paging: false,
                     "drawCallback": function () {
                         $('.monTexte').css("max-height", "15px");
@@ -180,7 +180,7 @@
                     <div class="col-md-offset-4">
                         <div class="row">
                             <div class="col-md-2">
-                                <button type="submit" class="btn btn-default" style="border: none">
+                                <button type="submit" class="btn btn-default" disabled="disabled"style="border: none">
                                     <img src="inc/img/checkmark-circled-512px.png" width="40" height="40"></button>
 
                             </div>
