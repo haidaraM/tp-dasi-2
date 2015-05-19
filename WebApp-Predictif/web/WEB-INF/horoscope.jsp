@@ -17,14 +17,17 @@
                 // $('#validation').attr('disabled',true);
 
                 $('#listPrediction').DataTable({
-                    scrollY: 402,
+                    scrollY: 440,
                     paging: false,
+                    "drawCallback": function () {
+                        $('tbody tr').css("color", "1px");
+                        $('tbody tr').css("overflow", "hidden");
+                    },
                     "columnDefs": [
                         {"width": "10%", "targets": 0},
                         {"width": "5%", "targets": 1}
                     ]
                 });
-
                 $('#listPrediction tbody').on('click', 'tr', function () {
                     if ($(this).hasClass('active')) {
                         $(this).removeClass('active');
@@ -38,6 +41,8 @@
                         $(this).addClass('active');
                     }
                 });
+
+                
 
                 /* fais la mise à jour de la partie texte à gauche et le bouton */
                 function majTexteEtButton(nouveauTexte) {
@@ -149,7 +154,7 @@
 
                             <tbody>
                                 <c:forEach var="prediction" items="${listPredictionSante}">
-                                    <tr style="max-height: 4px  !important" id=${prediction.id}>
+                                    <tr id=${prediction.id}>
                                         <td>${prediction.id}</td>
                                         <td>${prediction.niveau}</td>
                                         <td>${prediction.conseil}</td>
