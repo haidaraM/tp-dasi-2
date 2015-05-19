@@ -14,51 +14,43 @@
         <script>
             $(document).ready(function () {
 
-                // $('#validation').attr('disabled',true);
 
+                $('#choisir').attr('disabled', true);
+                
                 $('#listPrediction').DataTable({
                     scrollY: 440,
                     paging: false,
                     "drawCallback": function () {
-                        $('tbody tr').css("color", "1px");
-                        $('tbody tr').css("overflow", "hidden");
+                        $('.monTexte').css("max-height", "15px");
+                        $('.monTexte').css("max-width", '15px');
+                        $('.monTexte').css("white-space", "nowrap");
+                        $('.monTexte').css("overflow", "hidden");
                     },
                     "columnDefs": [
                         {"width": "10%", "targets": 0},
                         {"width": "5%", "targets": 1}
                     ]
                 });
+                
+                
                 $('#listPrediction tbody').on('click', 'tr', function () {
                     if ($(this).hasClass('active')) {
                         $(this).removeClass('active');
-                        supprimerTexte();
+                        $('#aRemplacer').text('');
+                        $('#choisir').attr('disabled', true);
                     }
                     else {
                         $('tr.active').removeClass('active');
 
-                        majTexteEtButton($(this).find('.monTexte').text());
+                        $('#aRemplacer').text($(this).find('.monTexte').text());
 
                         $(this).addClass('active');
+                        
+                        $('#choisir').attr('disabled', false);
                     }
                 });
 
-                
-
-                /* fais la mise à jour de la partie texte à gauche et le bouton */
-                function majTexteEtButton(nouveauTexte) {
-                    $('#aRemplacer').text(nouveauTexte);
-                }
-
-                /* supprime le texte de la zone à gauche */
-                function supprimerTexte() {
-                    $('#aRemplacer').text('');
-                }
-
-                function majLien(idClient) {
-                    var newUrl = "ActionServlet?todo=horoscope&idCl=" + idClient;
-                    $('#validation').attr('href', newUrl);
-                }
-
+              
             });
         </script>
 
@@ -66,10 +58,10 @@
 
     <body class="container">
         <br/>
-        <form class="form-horizontal" action="ActionServlet" method="POST">
-            <input type="hidden" name="todo" value="horoscope-validation">
-            <div class="row">
-                <br/>
+        <div class="row">
+            <form class="form-horizontal" action="ActionServlet" method="POST">
+                <input type="hidden" name="todo" value="horoscope-validation">
+
                 <div class="col-md-4">
                     <fieldset>
                         <legend>Infos Client</legend> 
@@ -87,9 +79,9 @@
                             <div class="col-md-7"> 
                                 <select class="form-control" name="medium" id="medium">
                                     <c:forEach var="medium" items="${listMediumClient}">
-                                        <c:out value="<option value=${medium.id}> " escapeXml="false" />
-                                        <c:out value="${medium.nom}" />
-                                        <c:out value="</option>" escapeXml="false"/>
+                                        <option value=${medium.id}>
+                                            ${medium.nom}
+                                        </option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -103,7 +95,10 @@
                             <textarea id="aRemplacer" class="form-control" readonly="readonly" name="prediction" rows="8">
                             </textarea>
                         </div>
-                        <button class="btn btn-default">Choisir</button>
+                    </div>
+
+                    <div class="col-md-offset-6">
+                        <button id="choisir" class="btn btn-default">Choisir</button>
                     </div>
 
                     <fieldset>
@@ -136,12 +131,29 @@
                         <div class="col-md-2">
                             <a class="btn btn-default" href="#">Voir historique</a>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div id="titre">Sélection prédictions</div>
                         </div>
 
+                        <div class="col-md-4">
+                            <select class="form-control" name="medium" id="medium">
+                                <option value="Sante">
+                                    Sante
+                                </option>
+                                
+                                <option value="Travail">
+                                    Travail
+                                </option>
+                                
+                                <option value="Amour">
+                                    Amour
+                                </option>
+
+                            </select>
+                        </div>
                     </div>
                     <div class="row">
+                        <br/>
                         <table id="listPrediction" class="table table-striped table-bordered" width="100%">
                             <thead>
                                 <tr>
@@ -168,12 +180,12 @@
                     <div class="col-md-offset-4">
                         <div class="row">
                             <div class="col-md-2">
-                                <button type="submit" class="btn">
+                                <button type="submit" class="btn btn-default" style="border: none">
                                     <img src="inc/img/checkmark-circled-512px.png" width="40" height="40"></button>
 
                             </div>
                             <div class="col-md-1">
-                                <button class="btn"> 
+                                <button class="btn btn-default" style="border: none"> 
                                     <img src="inc/img/icon_close_alt-512px.png" width="36" height="36"> 
                                 </button>
                             </div>
@@ -181,9 +193,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-        </form>
+            </form>
+        </div>
     </body>
 </html>
 </html>
