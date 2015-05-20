@@ -108,7 +108,11 @@
                     }
 
                 });
-
+                
+                $("#choisir").on('click', function (){
+                  // alert($('tr.active').find('td.id').text());
+                });
+                
             });
         </script>
 
@@ -156,7 +160,7 @@
                     </div>
 
                     <div class="col-md-offset-6">
-                        <button id="choisir" class="btn btn-default">Choisir</button>
+                        <a id="choisir" class="btn btn-default">Choisir</a>
                     </div>
 
                     <fieldset>
@@ -164,19 +168,19 @@
                         <div class="form-group"> 
                             <label for="chTravail" class="col-md-4">Travail </label>
                             <div class="col-md-7"> 
-                                <input type="text" name="chTravail" rows="1" class="uneditable-input" readonly="readonly">
+                                <input type="text" name="chTravail" id="chTravail" rows="1" class="uneditable-input" readonly="readonly">
                             </div>
                         </div>
                         <div class="form-group"> 
                             <label for="chSante" class="col-md-4">Santé </label>
                             <div class="col-md-7"> 
-                                <input type="text" name="chSante" rows="1" class="uneditable-input" readonly="readonly">
+                                <input type="text" name="chSante" id="chSante" rows="1" class="uneditable-input" readonly="readonly">
                             </div>
                         </div>
                         <div class="form-group"> 
                             <label for="chTravail" class="col-md-4">Travail </label>
                             <div class="col-md-7"> 
-                                <input type="text" name="chTravail" rows="1" class="uneditable-input" readonly="readonly">
+                                <input type="text" name="chTravail" id="chTravail" rows="1" class="uneditable-input" readonly="readonly">
                             </div>
                         </div>
                     </fieldset>
