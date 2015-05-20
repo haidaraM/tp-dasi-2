@@ -18,7 +18,7 @@ import modele.Medium;
  *
  * @author elmhaidara
  */
-public class InscriptionAction extends Action {
+public class InscriptionFormAction extends Action {
 
     /**
      * Constantes pour recuperer les paramètres

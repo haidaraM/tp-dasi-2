@@ -6,17 +6,16 @@
 package Controller;
 
 import Controller.Actions.ConnexionEmployeAction;
-import Controller.Actions.InscriptionAction;
+import Controller.Actions.HoroscopeFormAction;
+import Controller.Actions.InscriptionFormAction;
 import Controller.Actions.PageHoroscopeAction;
 import Controller.Actions.PageInscriptionAction;
 import daojpa.JpaUtil;
 import java.io.IOException;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modele.Client;
 
 /**
  *
@@ -47,7 +46,7 @@ public class ActionServlet extends HttpServlet {
                     request.getRequestDispatcher("inscription.jsp").forward(request, response);
                     break;
                 case "traitement-inscription":
-                    InscriptionAction ia = new InscriptionAction();
+                    InscriptionFormAction ia = new InscriptionFormAction();
                     ia.execute(request);
                     request.getRequestDispatcher(ia.getVue()).forward(request, response);
                     break;
@@ -64,6 +63,10 @@ public class ActionServlet extends HttpServlet {
                     } else {       //ou on le redirige vers la page de connexion
                         request.getRequestDispatcher("index.jsp").forward(request, response);
                     }
+                    break;
+                case "horoscope-validation":
+                    HoroscopeFormAction horoscopeFormAction = new HoroscopeFormAction();
+                    horoscopeFormAction.execute(request);
                     break;
             }
         }
