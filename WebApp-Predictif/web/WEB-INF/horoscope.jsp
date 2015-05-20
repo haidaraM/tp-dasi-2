@@ -14,10 +14,12 @@
         <script>
             $(document).ready(function () {
 
-
+                // on désactive le bouton choisir
                 $('#choisir').attr('disabled', true);
-                
-                $('#listPrediction').DataTable({
+
+
+                /* création de la datatable sante */
+                $('#listPredictionSante').DataTable({
                     scrollY: 405,
                     paging: false,
                     "drawCallback": function () {
@@ -31,9 +33,48 @@
                         {"width": "5%", "targets": 1}
                     ]
                 });
-                
-                
-                $('#listPrediction tbody').on('click', 'tr', function () {
+
+                /* création de la datatable travail */
+                $('#listPredictionTravail').DataTable({
+                    scrollY: 405,
+                    paging: false,
+                    "drawCallback": function () {
+                        $('.monTexte').css("max-height", "15px");
+                        $('.monTexte').css("max-width", '15px');
+                        $('.monTexte').css("white-space", "nowrap");
+                        $('.monTexte').css("overflow", "hidden");
+                    },
+                    "columnDefs": [
+                        {"width": "10%", "targets": 0},
+                        {"width": "5%", "targets": 1}
+                    ]
+                });
+
+                /* création de la datatable amour */
+                $('#listPredictionAmour').DataTable({
+                    scrollY: 405,
+                    paging: false,
+                    "drawCallback": function () {
+                        $('.monTexte').css("max-height", "15px");
+                        $('.monTexte').css("max-width", '15px');
+                        $('.monTexte').css("white-space", "nowrap");
+                        $('.monTexte').css("overflow", "hidden");
+                    },
+                    "columnDefs": [
+                        {"width": "10%", "targets": 0},
+                        {"width": "5%", "targets": 1},
+                        {"width": "5%", "targets": 2}
+                    ]
+                });
+
+
+                // on cache les deux autres datatables
+                $('#tableTravail').hide();
+                $('#tableAmour').hide();
+
+
+                /* implémentation de la selection sur les éléments de la datatable */
+                $('tbody').on('click', 'tr', function () {
                     if ($(this).hasClass('active')) {
                         $(this).removeClass('active');
                         $('#aRemplacer').text('');
@@ -45,12 +86,29 @@
                         $('#aRemplacer').text($(this).find('.monTexte').text());
 
                         $(this).addClass('active');
-                        
+
                         $('#choisir').attr('disabled', false);
                     }
                 });
 
-              
+                /* implémentation du chargement d'une autre table sur le onchange du select */
+                $('#typePrediction').on('change', function () {
+                    if (this.value === "Sante") {
+                        $('#tableSante').show();
+                        $('#tableTravail').hide();
+                        $('#tableAmour').hide();
+                    } else if (this.value === "Travail") {
+                        $('#tableTravail').show();
+                        $('#tableSante').hide();
+                        $('#tableAmour').hide();
+                    } else if (this.value === "Amour") {
+                        $('#tableTravail').hide();
+                        $('#tableSante').hide();
+                        $('#tableAmour').show();
+                    }
+
+                });
+
             });
         </script>
 
@@ -136,15 +194,15 @@
                         </div>
 
                         <div class="col-md-4">
-                            <select class="form-control" name="medium" id="medium">
+                            <select class="form-control" name="typePrediction" id="typePrediction">
                                 <option value="Sante">
                                     Sante
                                 </option>
-                                
+
                                 <option value="Travail">
                                     Travail
                                 </option>
-                                
+
                                 <option value="Amour">
                                     Amour
                                 </option>
@@ -154,27 +212,77 @@
                     </div>
                     <div class="row">
                         <br/>
-                        <table id="listPrediction" class="table table-striped table-bordered" width="100%">
-                            <thead>
-                                <tr>
-                                    <th>Ref</th>
-                                    <th>Niveau</th>
-                                    <th>Conseil</th>
-                                    <th>Texte</th>
-                                </tr>
-                            </thead>  
-
-                            <tbody>
-                                <c:forEach var="prediction" items="${listPredictionSante}">
-                                    <tr id=${prediction.id}>
-                                        <td>${prediction.id}</td>
-                                        <td>${prediction.niveau}</td>
-                                        <td>${prediction.conseil}</td>
-                                        <td  class="monTexte">${prediction.texte}</td>
+                        <div id="tableSante">
+                            <table id="listPredictionSante" class="table table-striped table-bordered" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>Ref</th>
+                                        <th>Niveau</th>
+                                        <th>Conseil</th>
+                                        <th>Texte</th>
                                     </tr>
-                                </c:forEach>
-                            </tbody>
-                        </table>
+                                </thead>  
+
+                                <tbody>
+                                    <c:forEach var="prediction" items="${listPredictionSante}">
+                                        <tr id=${prediction.id}>
+                                            <td>${prediction.id}</td>
+                                            <td>${prediction.niveau}</td>
+                                            <td>${prediction.conseil}</td>
+                                            <td  class="monTexte">${prediction.texte}</td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div id="tableTravail">
+                            <table id="listPredictionTravail" class="table table-striped table-bordered" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>Ref</th>
+                                        <th>Niveau</th>
+
+                                        <th>Texte</th>
+                                    </tr>
+                                </thead>  
+
+                                <tbody>
+                                    <c:forEach var="prediction" items="${listPredictionTravail}">
+                                        <tr id=${prediction.id}>
+                                            <td>${prediction.id}</td>
+                                            <td>${prediction.niveau}</td>
+                                            <td  class="monTexte">${prediction.texte}</td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div id="tableAmour">
+                            <table id="listPredictionAmour" class="table table-striped table-bordered" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>Ref</th>
+                                        <th>Niveau</th>
+                                        <th>Partenaire</th>
+                                        <th>Texte</th>
+                                    </tr>
+                                </thead>  
+
+                                <tbody>
+                                    <c:forEach var="prediction" items="${listPredictionAmour}">
+                                        <tr id=${prediction.id}>
+                                            <td>${prediction.id}</td>
+                                            <td>${prediction.niveau}</td>
+                                            <td>${prediction.partenaire.nom}</td>
+                                            <td  class="monTexte">${prediction.texte}</td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+
                     </div>
 
                     <div class="col-md-offset-4">

@@ -44,6 +44,8 @@ public class PageHoroscopeAction extends Action{
         request.setAttribute(ATT_CLIENT_CHOISI, client);
         request.setAttribute(ATT_MEDIUMS, listMedium);
         request.setAttribute(ATT_PREDIC_SANTE, listPredictionSante);
+        request.setAttribute(ATT_PREDIC_TRAVAIL, listPredictionTravail);
+        request.setAttribute(ATT_PREDIC_AMOUR, listPredictionAmour);
     }
     
 }
