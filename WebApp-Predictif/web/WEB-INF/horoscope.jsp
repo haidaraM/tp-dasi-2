@@ -10,12 +10,19 @@
         <script src="inc/js/jquery-1.11.2.min.js"></script>
         <script src="inc/js/jquery.dataTables.min.js"></script>
         <script src="inc/js/dataTables.bootstrap.js"></script>
+        <script src="inc/js/jqBootstrapValidation.js"></script>
 
         <script>
             $(document).ready(function () {
 
-                // on désactive le bouton choisir
-                $('#choisir').attr('disabled', true);
+                function disableButonChoisir(){
+                    $('#choisir').attr('disabled', true);
+                }
+                
+                disableButonChoisir();
+
+                // la datatable active par défaut
+                var tableActive = "Sante";
 
 
                 /* création de la datatable sante */
@@ -43,6 +50,7 @@
                         $('.monTexte').css("max-width", '15px');
                         $('.monTexte').css("white-space", "nowrap");
                         $('.monTexte').css("overflow", "hidden");
+                        
                     },
                     "columnDefs": [
                         {"width": "10%", "targets": 0},
@@ -59,6 +67,7 @@
                         $('.monTexte').css("max-width", '15px');
                         $('.monTexte').css("white-space", "nowrap");
                         $('.monTexte').css("overflow", "hidden");
+                        
                     },
                     "columnDefs": [
                         {"width": "10%", "targets": 0},
@@ -97,22 +106,49 @@
                         $('#tableSante').show();
                         $('#tableTravail').hide();
                         $('#tableAmour').hide();
+                        tableActive = this.value;
                     } else if (this.value === "Travail") {
                         $('#tableTravail').show();
                         $('#tableSante').hide();
                         $('#tableAmour').hide();
+                        tableActive = this.value;
                     } else if (this.value === "Amour") {
                         $('#tableTravail').hide();
                         $('#tableSante').hide();
                         $('#tableAmour').show();
+                        tableActive = this.value;
                     }
+                    disableButonChoisir();
 
                 });
-                
-                $("#choisir").on('click', function (){
-                  // alert($('tr.active').find('td.id').text());
+
+                // met à jour la partie prédiction choisie
+                $("#choisir").on('click', function () {
+                    // on recupère l'id
+                    var monID = $('tr.active').attr('id');
+
+                    if (tableActive === "Sante") {
+                        $('#chSante').val(monID);
+                        $('#iconSante').removeClass("glyphicon glyphicon-remove");
+                        $('#iconSante').addClass("glyphicon glyphicon-ok");
+                        $('#iconSante').css("color","green");
+                        
+                    } else if (tableActive === "Travail") {
+                        $('#chTravail').val(monID);
+                        $('#iconTravail').removeClass("glyphicon glyphicon-remove");
+                        $('#iconTravail').addClass("glyphicon glyphicon-ok");
+                        $('#iconTravail').css("color","green");
+
+                        
+                    } else if (tableActive === "Amour") {
+                        $('#chAmour').val(monID);
+                        $('#iconAmour').removeClass("glyphicon glyphicon-remove");
+                        $('#iconAmour').addClass("glyphicon glyphicon-ok");
+                        $('#iconAmour').css("color","green");
+
+                    }
                 });
-                
+
             });
         </script>
 
@@ -168,20 +204,25 @@
                         <div class="form-group"> 
                             <label for="chTravail" class="col-md-4">Travail </label>
                             <div class="col-md-7"> 
-                                <input type="text" name="chTravail" id="chTravail" rows="1" class="uneditable-input" readonly="readonly">
+                                <input type="text" name="chTravail" id="chTravail" rows="1" class="uneditable-input" value=" - " readonly="readonly">
                             </div>
+                            <span class="glyphicon glyphicon-remove" style="color: red"  id="iconTravail" aria-hidden="true"></span>
+
                         </div>
+
                         <div class="form-group"> 
                             <label for="chSante" class="col-md-4">Santé </label>
                             <div class="col-md-7"> 
-                                <input type="text" name="chSante" id="chSante" rows="1" class="uneditable-input" readonly="readonly">
+                                <input type="text" name="chSante" id="chSante" rows="1" class="uneditable-input" value=" - " readonly="readonly">
                             </div>
+                            <span class="glyphicon glyphicon-remove" style="color: red" id="iconSante"  aria-hidden="true"></span>
                         </div>
                         <div class="form-group"> 
-                            <label for="chTravail" class="col-md-4">Travail </label>
+                            <label for="chAmour" class="col-md-4">Amour </label>
                             <div class="col-md-7"> 
-                                <input type="text" name="chTravail" id="chTravail" rows="1" class="uneditable-input" readonly="readonly">
+                                <input type="text" name="chAmour" id="chAmour" rows="1" class="uneditable-input" value=" - " readonly="readonly">
                             </div>
+                            <span class="glyphicon glyphicon-remove" style="color: red"  id="iconAmour" aria-hidden="true"></span>
                         </div>
                     </fieldset>
                     <br/>

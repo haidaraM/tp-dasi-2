@@ -48,10 +48,6 @@ public class ConnexionEmployeAction extends Action {
 
     private boolean connecte() {
 
-        if (employe != null) {
-            return true;
-        } else {
-            return false;
-        }
+        return employe != null;
     }
 }
