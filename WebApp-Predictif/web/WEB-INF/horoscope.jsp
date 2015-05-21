@@ -21,9 +21,12 @@
                 
                 disableButonChoisir();
 
-                // la datatable active par défaut
+                // la datatable Sante est active par défaut
                 var tableActive = "Sante";
-
+                
+                var choixSante = false;
+                var choixAmour = false;
+                var choixTravail = false;
 
                 /* création de la datatable sante */
                 $('#listPredictionSante').DataTable({
@@ -133,20 +136,28 @@
                         $('#iconSante').addClass("glyphicon glyphicon-ok");
                         $('#iconSante').css("color","green");
                         
+                        choixSante = true;
+                        
                     } else if (tableActive === "Travail") {
                         $('#chTravail').val(monID);
                         $('#iconTravail').removeClass("glyphicon glyphicon-remove");
                         $('#iconTravail').addClass("glyphicon glyphicon-ok");
                         $('#iconTravail').css("color","green");
-
+                        choixTravail = true;
                         
                     } else if (tableActive === "Amour") {
                         $('#chAmour').val(monID);
                         $('#iconAmour').removeClass("glyphicon glyphicon-remove");
                         $('#iconAmour').addClass("glyphicon glyphicon-ok");
                         $('#iconAmour').css("color","green");
-
+                        choixAmour = true;
                     }
+                    
+                    // on check si les 3 choix sont valides, si c'est le cas on active le bouton de validation du formulaire
+                    if( choixAmour && choixSante && choixTravail){
+                        $("#validation").attr('disabled', false);
+                    }
+                    
                 });
 
             });
@@ -199,7 +210,7 @@
                         <a id="choisir" class="btn btn-default">Choisir</a>
                     </div>
 
-                    <fieldset>
+                    <fieldset> 
                         <legend>Prédictions choisies</legend> 
                         <div class="form-group"> 
                             <label for="chTravail" class="col-md-4">Travail </label>
@@ -231,11 +242,11 @@
 
                 <div class="col-md-8">
                     <div class="row">
-                        <div class="col-md-2">
-                            <a class="btn btn-default" href="#">Voir historique</a>
+                        <div class="col-md-3">
+                            <a class="btn btn-default" href="#">Voir historique <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> </a>
                         </div>
                         <div class="col-md-3">
-                            <div id="titre">Sélection prédictions</div>
+                            <div id="titre"> Sélection prédictions</div>
                         </div>
 
                         <div class="col-md-4">
@@ -333,9 +344,8 @@
                     <div class="col-md-offset-4">
                         <div class="row">
                             <div class="col-md-2">
-                                <button type="submit" class="btn btn-default" disabled="disabled"style="border: none">
+                                <button id="validation" type="submit" class="btn btn-default" disabled="disabled" style="border: none">
                                     <img src="inc/img/checkmark-circled-512px.png" width="40" height="40"></button>
-
                             </div>
                             <div class="col-md-1">
                                 <button class="btn btn-default" style="border: none"> 
