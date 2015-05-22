@@ -36,11 +36,6 @@ public class InscriptionFormAction extends Action {
     public static final String ATT_COURIEL = "couriel";
     public static final String ATT_MEDIUMS = "mediums";
 
-    /**
-     * Représente la vue qui sera affichée par l'action servlet
-     */
-    private String vue;
-
     @Override
     public void execute(HttpServletRequest request) {
 
@@ -72,23 +67,13 @@ public class InscriptionFormAction extends Action {
 
         if (service.Service.creerClient(client)) {
             request.setAttribute("clientInscrit", client);
-            vue = "WEB-INF/confirmation-inscription.jsp";
         } else {
             request.setAttribute(Erreur.ATT_ERREUR, Erreur.ERR_INSCRIPTION_CLIENT);
             request.setAttribute(Erreur.ATT_ERREUR_TITRE, Erreur.ERR_INSCRIPTION_TITRE);
             request.setAttribute("clientInscrit", null);
-            vue = "WEB-INF/erreur.jsp";
         }
 
     }
 
-    /**
-     * Recupère la prochaine vue qui sera affichée
-     *
-     * @return
-     */
-    public String getVue() {
-        return vue;
-    }
 
 }

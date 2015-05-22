@@ -25,6 +25,9 @@ public class PageHoroscopeAction extends Action{
     public static final String ATT_PREDIC_SANTE = "listPredictionSante";
     public static final String ATT_PREDIC_AMOUR = "listPredictionAmour";
     public static final String ATT_PREDIC_TRAVAIL = "listPredictionTravail";
+    public static final String ATT_HISTO_SANTE = "listHistoSante";
+    public static final String ATT_HISTO_AMOUR = "listHistoAmour";
+    public static final String ATT_HISTO_TRAVAIL = "listHistoTravail";
 
     @Override
     public void execute(HttpServletRequest request) {
@@ -36,6 +39,9 @@ public class PageHoroscopeAction extends Action{
         List<Prediction_Amour> listPredictionAmour = service.Service.obtenirPredictionsAmour();
         List<Prediction_Sante> listPredictionSante = service.Service.obtenirPredictionsSante();
         List<Prediction_Travail> listPredictionTravail = service.Service.obtenirPredictionsTravail();
+        List<Prediction_Amour> listHistoAmour = service.Service.historiquePredictionsAmour(client);
+        List<Prediction_Sante> listHistoSante = service.Service.historiquePredictionsSante(client);
+        List<Prediction_Travail> listHistoTravail = service.Service.historiquePredictionsTravail(client);
         
         
         //TODO : peut être faire des vérifications sur les valeurs reçues
@@ -46,6 +52,9 @@ public class PageHoroscopeAction extends Action{
         request.setAttribute(ATT_PREDIC_SANTE, listPredictionSante);
         request.setAttribute(ATT_PREDIC_TRAVAIL, listPredictionTravail);
         request.setAttribute(ATT_PREDIC_AMOUR, listPredictionAmour);
+        request.setAttribute(ATT_HISTO_SANTE, listHistoSante);
+        request.setAttribute(ATT_HISTO_TRAVAIL, listHistoTravail);
+        request.setAttribute(ATT_HISTO_AMOUR, listHistoAmour);
     }
     
 }

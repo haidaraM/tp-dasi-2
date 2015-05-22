@@ -28,7 +28,7 @@ public class ConnexionEmployeAction extends Action {
         String motDePasse = request.getParameter("password");
 
         employe = service.Service.connexionEmploye(login, motDePasse);
-        if (connecte()) {
+        if (employe != null) {
             HttpSession session =  request.getSession(true);
             
             session.setAttribute(ATT_EMPLOYE, employe);
@@ -38,14 +38,5 @@ public class ConnexionEmployeAction extends Action {
             
         }
 
-    }
-    
-    public String getVue(){
-        return vue;
-    }
-
-    private boolean connecte() {
-
-        return employe != null;
     }
 }
