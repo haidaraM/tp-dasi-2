@@ -181,8 +181,10 @@
                         $('#aRemplacer').text($(this).find('.monTexte').text());
 
                         $(this).addClass('active');
-
-                        $('#choisir').attr('disabled', false);
+                        if(historique !== true){
+                            $('#choisir').attr('disabled', false);
+                        }
+                        
                     }
                 });
 
@@ -557,7 +559,7 @@
                                     <img src="inc/img/checkmark-circled-512px.png" width="40" height="40"></button>
                             </div>
                             <div class="col-md-1">
-                                <a class="btn btn-default" href="#" id="annuler" style="border: none"v> 
+                                <a class="btn btn-default" href="index.jsp" id="annuler" style="border: none"v> 
                                     <img src="inc/img/icon_close_alt-512px.png" width="36" height="36"> 
                                 </a>
                             </div>
