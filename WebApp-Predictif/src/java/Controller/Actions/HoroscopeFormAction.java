@@ -5,6 +5,7 @@
  */
 package Controller.Actions;
 
+import Utilities.Erreur;
 import javax.servlet.http.HttpServletRequest;
 import modele.Client;
 import modele.Horoscope;
@@ -73,7 +74,9 @@ public class HoroscopeFormAction extends Action {
             vue = "WEB-INF/confirmation-creation-horoscope.jsp";
         } else {
             
-            request.setAttribute("erreur", true);
+            request.setAttribute(Erreur.ATT_ERREUR, Erreur.ERR_CREATION_HOROSCOPE);
+            request.setAttribute(Erreur.ATT_ERREUR_TITRE, Erreur.ERR_CREATION_HOROSCOPE_TITRE);
+            
             vue = "WEB-INF/erreur.jsp";
         }
 
