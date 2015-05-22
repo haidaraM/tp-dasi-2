@@ -177,7 +177,7 @@
                         <div class="form-group"> 
                             <label for="client" class="col-md-4">Client </label>
                             <div class="col-md-7"> 
-                                <select class="form-control" name="client" id="client" disabled>
+                                <select class="form-control" name="client" id="client" readonly="readonly">
                                     <option value=${clientChoisi.id}> ${clientChoisi.prenom} ${clientChoisi.nom} </option>
                                 </select>
                             </div>

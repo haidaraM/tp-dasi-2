@@ -67,6 +67,7 @@ public class ActionServlet extends HttpServlet {
                 case "horoscope-validation":
                     HoroscopeFormAction horoscopeFormAction = new HoroscopeFormAction();
                     horoscopeFormAction.execute(request);
+                    request.getRequestDispatcher(horoscopeFormAction.getVue()).forward(request, response);
                     break;
             }
         }
