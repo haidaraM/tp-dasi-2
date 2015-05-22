@@ -20,7 +20,6 @@ import modele.Prediction_Travail;
  */
 public class HoroscopeFormAction extends Action {
     
-    private String vue;
 
     public static final String ATT_CLIENT_ID = "client";
     public static final String ATT_MEDIUM = "medium";
@@ -30,7 +29,6 @@ public class HoroscopeFormAction extends Action {
 
     @Override
     public void execute(HttpServletRequest request) {
-
                
         int idClient = Integer.parseInt(request.getParameter(ATT_CLIENT_ID));
         System.out.println("Client : " + idClient);
@@ -71,20 +69,13 @@ public class HoroscopeFormAction extends Action {
         Horoscope horoscope = new Horoscope(prediction_Amour, prediction_Sante, prediction_Travail, client, medium);
         if(service.Service.creerHoroscope(horoscope)){
             request.setAttribute("horoscope", horoscope);
-            vue = "WEB-INF/confirmation-creation-horoscope.jsp";
-        } else {
-            
+        } else {  
             request.setAttribute(Erreur.ATT_ERREUR, Erreur.ERR_CREATION_HOROSCOPE);
             request.setAttribute(Erreur.ATT_ERREUR_TITRE, Erreur.ERR_CREATION_HOROSCOPE_TITRE);
-            
-            vue = "WEB-INF/erreur.jsp";
         }
 
     }
 
-    public String getVue() {
-        return vue;
-    }
     
     
 

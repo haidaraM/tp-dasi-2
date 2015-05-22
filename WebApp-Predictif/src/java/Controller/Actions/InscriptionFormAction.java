@@ -76,6 +76,7 @@ public class InscriptionFormAction extends Action {
         } else {
             request.setAttribute(Erreur.ATT_ERREUR, Erreur.ERR_INSCRIPTION_CLIENT);
             request.setAttribute(Erreur.ATT_ERREUR_TITRE, Erreur.ERR_INSCRIPTION_TITRE);
+            request.setAttribute("clientInscrit", null);
             vue = "WEB-INF/erreur.jsp";
         }
 

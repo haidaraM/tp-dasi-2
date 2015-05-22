@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import Controller.Actions.Action;
 import Controller.Actions.ConnexionEmployeAction;
 import Controller.Actions.HoroscopeFormAction;
 import Controller.Actions.InscriptionFormAction;
@@ -37,42 +38,82 @@ public class ActionServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         String todo = request.getParameter("todo");
-
-        if (null != todo) {
-            switch (todo) {
-                case "page-inscription":
-                    PageInscriptionAction pageInscriptionAction = new PageInscriptionAction();
-                    pageInscriptionAction.execute(request);
-                    request.getRequestDispatcher("inscription.jsp").forward(request, response);
-                    break;
-                case "traitement-inscription":
-                    InscriptionFormAction ia = new InscriptionFormAction();
-                    ia.execute(request);
-                    request.getRequestDispatcher(ia.getVue()).forward(request, response);
-                    break;
-                case "connexion-admin":
-                    ConnexionEmployeAction cea = new ConnexionEmployeAction();
-                    cea.execute(request);
-                    request.getRequestDispatcher(cea.getVue()).forward(request, response);
-                    break;
-                case "horoscope":
-                    if (request.getSession(true).getAttribute(ConnexionEmployeAction.ATT_EMPLOYE) != null) { //on vérifie que l'usager est bien identifié
-                        PageHoroscopeAction pageHoroscopeAction = new PageHoroscopeAction();
-                        pageHoroscopeAction.execute(request);
-                        request.getRequestDispatcher("WEB-INF/horoscope.jsp").forward(request, response);
-                    } else {       //ou on le redirige vers la page de connexion
-                        request.getRequestDispatcher("index.jsp").forward(request, response);
-                    }
-                    break;
-                case "horoscope-validation":
-                    HoroscopeFormAction horoscopeFormAction = new HoroscopeFormAction();
-                    horoscopeFormAction.execute(request);
-                    request.getRequestDispatcher(horoscopeFormAction.getVue()).forward(request, response);
-                    break;
-            }
-        }
+        Action action = this.getAction(todo);
+        action.execute(request);
+        String vue = this.SetVue(todo, request);
+        request.getRequestDispatcher(vue).forward(request, response);
     }
 
+    private Action getAction(String todo){
+        Action action =null;
+        switch(todo){
+            case "page-inscription":
+                action = new PageInscriptionAction();
+                break;
+            case "traitement-inscription":
+                action = new InscriptionFormAction();
+                break;
+            case "connexion-admin":
+                action = new ConnexionEmployeAction();
+                break;
+            case "horoscope" : 
+                action = new PageHoroscopeAction();
+                break;
+            case "horoscope-validation":
+                action = new HoroscopeFormAction();
+                break;                  
+        }
+        return action;
+    }
+    
+    private String SetVue(String todo,HttpServletRequest request){
+        String vue = null;
+        switch (todo){
+            case "page-inscription":
+                vue = "inscription.jsp";
+                break;
+            case "traitement-inscription":
+                if (request.getAttribute("clientInscrit")!=null){
+                    vue = "WEB-INF/confirmation-inscription.jsp";
+                }
+                else{
+                    vue = "WEB-INF/erreur.jsp";
+                }
+            break;
+            case "connexion-admin":
+                if(adminConnecte(request)){
+                    vue = "WEB-INF/selectionClient.jsp";
+                }
+                else {
+                    vue = "index.jsp";
+                }
+            break;
+            case "horoscope":
+                if(adminConnecte(request)){
+                    vue = "WEB-INF/horoscope.jsp";
+                }
+                else {
+                    vue = "index.jsp";
+                }
+            break;
+            case "horoscope-validation":
+                    if (request.getAttribute("horoscope")!=null){
+                        vue = "WEB-INF/confirmation-creation-horoscope.jsp";
+                    }
+                    else{
+                        vue = "WEB-INF/erreur.jsp";
+                    }
+                break;
+            default :
+                vue = "index.jsp";
+        }
+        return vue;
+    }
+    
+    private boolean adminConnecte(HttpServletRequest request){
+        return request.getSession(true).getAttribute(ConnexionEmployeAction.ATT_EMPLOYE) != null;
+    }
+    
     @Override
     public void init() throws ServletException {
         super.init();
