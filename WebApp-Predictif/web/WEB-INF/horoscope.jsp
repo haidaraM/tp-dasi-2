@@ -23,26 +23,32 @@
 
                 // la datatable Sante est active par défaut
                 var tableActive = "Sante";
-                
+                var tableActiveHistorique = "SanteHistorique";
+
 
                 var choixSante = false;
                 var choixAmour = false;
                 var choixTravail = false;
-                
-                function cacheTableActive(){
-                    if(tableActive === "Sante"){
+                var historique = false;
+
+                function cacheTableActive() {
+                    if (tableActive === "Sante") {
                         $('#tableSante').hide();
-                    } else if (tableActive === "Travail"){
+                    } else if (tableActive === "Travail") {
                         $('#tableTravail').hide();
-                    } else if(tableActive === "Amour"){
+                    } else if (tableActive === "Amour") {
                         $('#tableAmour').hide();
-                    } else if(tableActive === "SanteHistorique"){
-                        $('#tableSanteHistorique').hide();
                     }
                 }
-                
-                function cacheTableActiveHistorique(){
-                    
+
+                function cacheTableActiveHistorique() {
+                    if (tableActiveHistorique === "SanteHistorique") {
+                        $('#tableSanteHistorique').hide();
+                    } else if (tableActiveHistorique === "TravailHistorique") {
+                        $('#tableTravailHistorique').hide();
+                    } else if (tableActiveHistorique === "AmourHistorique") {
+                        $('#tableAmourHistorique').hide();
+                    }
                 }
 
                 /* création de la datatable sante */
@@ -153,9 +159,13 @@
                 // on cache les autres datatables
                 $('#tableTravail').hide();
                 $('#tableAmour').hide();
+
+
+
                 $('#tableAmourHistorique').hide();
                 $('#tableSanteHistorique').hide();
                 $('#tableTravailHistorique').hide();
+                $('#typePredictionHistorique').hide();
 
 
                 /* implémentation de la selection sur les éléments de la datatable */
@@ -191,6 +201,27 @@
                         cacheTableActive();
                         tableActive = this.value;
                     }
+                    desactiveBoutonChoisir();
+
+                });
+
+                /* implémentation du chargement d'une autre table sur le onchange du select */
+                $('#typePredictionHistorique').on('change', function () {
+                    if (this.value === "SanteHistorique") {
+                        $('#tableSanteHistorique').show();
+                        cacheTableActiveHistorique();
+                        tableActiveHistorique = this.value;
+                    } else if (this.value === "TravailHistorique") {
+                        $('#tableTravailHistorique').show();
+                        cacheTableActiveHistorique();
+                        tableActiveHistorique = this.value;
+                    } else if (this.value === "AmourHistorique") {
+                        $('#tableAmourHistorique').show();
+                        cacheTableActiveHistorique();
+                        tableActiveHistorique = this.value;
+                    }
+
+                    console.log(this.value);
                     desactiveBoutonChoisir();
 
                 });
@@ -238,19 +269,26 @@
                     var span = $(" <span class='glyphicon glyphicon-repeat' aria-hidden='true'></span>");
                     $(this).append(span);
                     cacheTableActive();
+                    $('#typePrediction').hide();
+                    $('#typePredictionHistorique').show();
                     $('#tableSanteHistorique').show();
-                    tableActive = "SanteHistorique";
+                    tableActiveHistorique = "SanteHistorique";
+                    historique = true;
+                    desactiveBoutonChoisir();
                 });
 
-                /* click sur le bouton historique */
+                /* click sur le bouton retour */
                 $(document).on('click', '#retour', function () {
-                    $(this).text("Voir historique ");
+                    $(this).text("Voir Historique ");
                     $(this).attr('id', "historique");
                     var span = $(" <span class='glyphicon glyphicon-repeat' aria-hidden='true'></span>");
                     $(this).append(span);
-                    cacheTableActive();
+                    cacheTableActiveHistorique();
                     $('#tableSante').show();
                     tableActive = "Sante";
+                    historique = false;
+                    $('#typePrediction').show();
+                    $('#typePredictionHistorique').hide();
                 });
 
             });
@@ -354,6 +392,18 @@
                                     Amour
                                 </option>
                             </select>
+
+                            <select class="form-control" name="typePredictionHistorique" id="typePredictionHistorique">
+                                <option value="SanteHistorique">
+                                    Sante
+                                </option>
+                                <option value="TravailHistorique">
+                                    Travail
+                                </option>
+                                <option value="AmourHistorique">
+                                    Amour
+                                </option>
+                            </select>
                         </div>
                     </div>
                     <div class="row">
@@ -430,7 +480,7 @@
                         </div>
 
                         <div id="tableAmourHistorique">
-                            <table id="listPredictionSanteHistorique" class="table table-striped table-bordered" width="100%">
+                            <table id="listPredictionAmourHistorique" class="table table-striped table-bordered" width="100%">
                                 <thead>
                                     <tr>
                                         <th>Ref</th>
@@ -454,7 +504,7 @@
                         </div>
 
                         <div id="tableTravailHistorique">
-                            <table id="listPredictionHistorique" class="table table-striped table-bordered" width="100%">
+                            <table id="listPredictionTravailHistorique" class="table table-striped table-bordered" width="100%">
                                 <thead>
                                     <tr>
                                         <th>Ref</th>
