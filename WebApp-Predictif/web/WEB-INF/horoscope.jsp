@@ -15,18 +15,35 @@
         <script>
             $(document).ready(function () {
 
-                function disableButonChoisir() {
+                function desactiveBoutonChoisir() {
                     $('#choisir').attr('disabled', true);
                 }
 
-                disableButonChoisir();
+                desactiveBoutonChoisir();
 
                 // la datatable Sante est active par défaut
                 var tableActive = "Sante";
+                
 
                 var choixSante = false;
                 var choixAmour = false;
                 var choixTravail = false;
+                
+                function cacheTableActive(){
+                    if(tableActive === "Sante"){
+                        $('#tableSante').hide();
+                    } else if (tableActive === "Travail"){
+                        $('#tableTravail').hide();
+                    } else if(tableActive === "Amour"){
+                        $('#tableAmour').hide();
+                    } else if(tableActive === "SanteHistorique"){
+                        $('#tableSanteHistorique').hide();
+                    }
+                }
+                
+                function cacheTableActiveHistorique(){
+                    
+                }
 
                 /* création de la datatable sante */
                 $('#listPredictionSante').DataTable({
@@ -79,10 +96,66 @@
                     ]
                 });
 
+                /* création de la datatable historique amour */
+                $('#listPredictionAmourHistorique').DataTable({
+                    scrollY: 405,
+                    paging: false,
+                    "drawCallback": function () {
+                        $('.monTexte').css("max-height", "15px");
+                        $('.monTexte').css("max-width", '15px');
+                        $('.monTexte').css("white-space", "nowrap");
+                        $('.monTexte').css("overflow", "hidden");
 
-                // on cache les deux autres datatables
+                    },
+                    "columnDefs": [
+                        {"width": "10%", "targets": 0},
+                        {"width": "5%", "targets": 1},
+                        {"width": "5%", "targets": 2}
+                    ]
+                });
+
+                /* création de la datatable historique travail */
+                $('#listPredictionTravailHistorique').DataTable({
+                    scrollY: 405,
+                    paging: false,
+                    "drawCallback": function () {
+                        $('.monTexte').css("max-height", "15px");
+                        $('.monTexte').css("max-width", '15px');
+                        $('.monTexte').css("white-space", "nowrap");
+                        $('.monTexte').css("overflow", "hidden");
+
+                    },
+                    "columnDefs": [
+                        {"width": "10%", "targets": 0},
+                        {"width": "5%", "targets": 1},
+                        {"width": "5%", "targets": 2}
+                    ]
+                });
+
+                /* création de la datatable historique sante */
+                $('#listPredictionSanteHistorique').DataTable({
+                    scrollY: 405,
+                    paging: false,
+                    "drawCallback": function () {
+                        $('.monTexte').css("max-height", "15px");
+                        $('.monTexte').css("max-width", '15px');
+                        $('.monTexte').css("white-space", "nowrap");
+                        $('.monTexte').css("overflow", "hidden");
+
+                    },
+                    "columnDefs": [
+                        {"width": "10%", "targets": 0},
+                        {"width": "5%", "targets": 1},
+                        {"width": "5%", "targets": 2}
+                    ]
+                });
+
+                // on cache les autres datatables
                 $('#tableTravail').hide();
                 $('#tableAmour').hide();
+                $('#tableAmourHistorique').hide();
+                $('#tableSanteHistorique').hide();
+                $('#tableTravailHistorique').hide();
 
 
                 /* implémentation de la selection sur les éléments de la datatable */
@@ -107,21 +180,18 @@
                 $('#typePrediction').on('change', function () {
                     if (this.value === "Sante") {
                         $('#tableSante').show();
-                        $('#tableTravail').hide();
-                        $('#tableAmour').hide();
+                        cacheTableActive();
                         tableActive = this.value;
                     } else if (this.value === "Travail") {
                         $('#tableTravail').show();
-                        $('#tableSante').hide();
-                        $('#tableAmour').hide();
+                        cacheTableActive();
                         tableActive = this.value;
                     } else if (this.value === "Amour") {
-                        $('#tableTravail').hide();
-                        $('#tableSante').hide();
                         $('#tableAmour').show();
+                        cacheTableActive();
                         tableActive = this.value;
                     }
-                    disableButonChoisir();
+                    desactiveBoutonChoisir();
 
                 });
 
@@ -162,20 +232,25 @@
                 });
 
                 /* click sur le bouton historique */
-                $(document).on('click','#historique', function () {
+                $(document).on('click', '#historique', function () {
                     $(this).text("Retour ");
                     $(this).attr('id', "retour");
                     var span = $(" <span class='glyphicon glyphicon-repeat' aria-hidden='true'></span>");
                     $(this).append(span);
+                    cacheTableActive();
+                    $('#tableSanteHistorique').show();
+                    tableActive = "SanteHistorique";
                 });
 
                 /* click sur le bouton historique */
-                $(document).on('click','#retour', function () {
-                    
+                $(document).on('click', '#retour', function () {
                     $(this).text("Voir historique ");
                     $(this).attr('id', "historique");
                     var span = $(" <span class='glyphicon glyphicon-repeat' aria-hidden='true'></span>");
                     $(this).append(span);
+                    cacheTableActive();
+                    $('#tableSante').show();
+                    tableActive = "Sante";
                 });
 
             });
@@ -272,15 +347,12 @@
                                 <option value="Sante">
                                     Sante
                                 </option>
-
                                 <option value="Travail">
                                     Travail
                                 </option>
-
                                 <option value="Amour">
                                     Amour
                                 </option>
-
                             </select>
                         </div>
                     </div>
@@ -357,6 +429,75 @@
                             </table>
                         </div>
 
+                        <div id="tableAmourHistorique">
+                            <table id="listPredictionSanteHistorique" class="table table-striped table-bordered" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>Ref</th>
+                                        <th>Niveau</th>
+                                        <th>Partenaire</th>
+                                        <th>Texte</th>
+                                    </tr>
+                                </thead>  
+
+                                <tbody>
+                                    <c:forEach var="prediction" items="${listHistoAmour}">
+                                        <tr id=${prediction.id}>
+                                            <td>${prediction.id}</td>
+                                            <td>${prediction.niveau}</td>
+                                            <td>${prediction.partenaire.nom}</td>
+                                            <td  class="monTexte">${prediction.texte}</td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div id="tableTravailHistorique">
+                            <table id="listPredictionHistorique" class="table table-striped table-bordered" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>Ref</th>
+                                        <th>Niveau</th>
+                                        <th>Texte</th>
+                                    </tr>
+                                </thead>  
+
+                                <tbody>
+                                    <c:forEach var="prediction" items="${listHistoTravail}">
+                                        <tr id=${prediction.id}>
+                                            <td>${prediction.id}</td>
+                                            <td>${prediction.niveau}</td>
+                                            <td  class="monTexte">${prediction.texte}</td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div id="tableSanteHistorique">
+                            <table id="listPredictionSanteHistorique" class="table table-striped table-bordered" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>Ref</th>
+                                        <th>Niveau</th>
+                                        <th>Conseil</th>
+                                        <th>Texte</th>
+                                    </tr>
+                                </thead>  
+
+                                <tbody>
+                                    <c:forEach var="prediction" items="${listHistoSante}">
+                                        <tr id=${prediction.id}>
+                                            <td>${prediction.id}</td>
+                                            <td>${prediction.niveau}</td>
+                                            <td>${prediction.conseil}</td>
+                                            <td  class="monTexte">${prediction.texte}</td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
 
                     <div class="col-md-offset-4">
