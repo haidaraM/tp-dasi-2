@@ -68,6 +68,7 @@ public class HoroscopeFormAction extends Action {
         
         Horoscope horoscope = new Horoscope(prediction_Amour, prediction_Sante, prediction_Travail, client, medium);
         if(service.Service.creerHoroscope(horoscope)){
+            request.setAttribute(ATT_CLIENT_ID, client);
             request.setAttribute("horoscope", horoscope);
         } else {  
             request.setAttribute(Erreur.ATT_ERREUR, Erreur.ERR_CREATION_HOROSCOPE);

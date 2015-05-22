@@ -11,17 +11,29 @@
         <div class="page-header">
             <h1 style="text-align: center">Confirmation création horoscope</h1>
         </div>
-        
+
         <div class="alert alert-success">
             <strong>Success!</strong> L'horoscope à bien été crée pour le client.
         </div>
-        
+
         <div id="detail">
             <h3>
                 Récapitulatif de la création de l'horoscope
             </h3>
-        </div>
 
+            <div id="civilite">
+                ${client.civilite} <strong> ${client.prenom} ${client.nom} </strong> <br/>
+                ${client.adresse} <br/>
+                ${client.tel}
+            </div>
+
+            <div id="moreInfo">
+                Votre numéro de client : ${client.id} <br/>
+                Votre signe : ${client.signe.nom} <br/>
+                Vos mediums favoris : 
+            </div>
+        </div>
+        <br/>
         <a href="index.jsp" class="btn btn-default">Retour à la page d'accueil</a>
 
     </body>
