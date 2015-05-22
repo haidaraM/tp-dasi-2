@@ -15,15 +15,15 @@
         <script>
             $(document).ready(function () {
 
-                function disableButonChoisir(){
+                function disableButonChoisir() {
                     $('#choisir').attr('disabled', true);
                 }
-                
+
                 disableButonChoisir();
 
                 // la datatable Sante est active par défaut
                 var tableActive = "Sante";
-                
+
                 var choixSante = false;
                 var choixAmour = false;
                 var choixTravail = false;
@@ -53,7 +53,7 @@
                         $('.monTexte').css("max-width", '15px');
                         $('.monTexte').css("white-space", "nowrap");
                         $('.monTexte').css("overflow", "hidden");
-                        
+
                     },
                     "columnDefs": [
                         {"width": "10%", "targets": 0},
@@ -70,7 +70,7 @@
                         $('.monTexte').css("max-width", '15px');
                         $('.monTexte').css("white-space", "nowrap");
                         $('.monTexte').css("overflow", "hidden");
-                        
+
                     },
                     "columnDefs": [
                         {"width": "10%", "targets": 0},
@@ -134,30 +134,48 @@
                         $('#chSante').val(monID);
                         $('#iconSante').removeClass("glyphicon glyphicon-remove");
                         $('#iconSante').addClass("glyphicon glyphicon-ok");
-                        $('#iconSante').css("color","green");
-                        
+                        $('#iconSante').css("color", "green");
+
                         choixSante = true;
-                        
+
                     } else if (tableActive === "Travail") {
                         $('#chTravail').val(monID);
                         $('#iconTravail').removeClass("glyphicon glyphicon-remove");
                         $('#iconTravail').addClass("glyphicon glyphicon-ok");
-                        $('#iconTravail').css("color","green");
+                        $('#iconTravail').css("color", "green");
                         choixTravail = true;
-                        
+
                     } else if (tableActive === "Amour") {
                         $('#chAmour').val(monID);
                         $('#iconAmour').removeClass("glyphicon glyphicon-remove");
                         $('#iconAmour').addClass("glyphicon glyphicon-ok");
-                        $('#iconAmour').css("color","green");
+                        $('#iconAmour').css("color", "green");
                         choixAmour = true;
                     }
-                    
-                    // on check si les 3 choix sont valides, si c'est le cas on active le bouton de validation du formulaire
-                    if( choixAmour && choixSante && choixTravail){
+
+                    /* on check si les 3 choix sont valides, si c'est le cas 
+                     on active le bouton de validation du formulaire */
+                    if (choixAmour && choixSante && choixTravail) {
                         $("#validation").attr('disabled', false);
                     }
+
+                });
+
+                /* click sur le bouton historique */
+                $(document).on('click','#historique', function () {
+                    $(this).text("Retour ");
+                    $(this).attr('id', "retour");
+                    var span = $(" <span class='glyphicon glyphicon-repeat' aria-hidden='true'></span>");
+                    $(this).append(span);
+                });
+
+                /* click sur le bouton historique */
+                $(document).on('click','#retour', function () {
                     
+                    $(this).text("Voir historique ");
+                    $(this).attr('id', "historique");
+                    var span = $(" <span class='glyphicon glyphicon-repeat' aria-hidden='true'></span>");
+                    $(this).append(span);
                 });
 
             });
@@ -242,8 +260,8 @@
 
                 <div class="col-md-8">
                     <div class="row">
-                        <div class="col-md-3">
-                            <a class="btn btn-default" href="#">Voir historique <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> </a>
+                        <div class="col-md-3" id="boutonRetourHistorique">
+                            <a class="btn btn-default" id="historique" href="#">Voir historique <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> </a>
                         </div>
                         <div class="col-md-3">
                             <div id="titre"> Sélection prédictions</div>
@@ -348,9 +366,9 @@
                                     <img src="inc/img/checkmark-circled-512px.png" width="40" height="40"></button>
                             </div>
                             <div class="col-md-1">
-                                <button class="btn btn-default" style="border: none"> 
+                                <a class="btn btn-default" href="#" id="annuler" style="border: none"v> 
                                     <img src="inc/img/icon_close_alt-512px.png" width="36" height="36"> 
-                                </button>
+                                </a>
                             </div>
 
                         </div>
