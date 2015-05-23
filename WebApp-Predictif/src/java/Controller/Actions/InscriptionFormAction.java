@@ -27,9 +27,7 @@ public class InscriptionFormAction extends Action {
     public static final String ATT_CIVILITE = "civilite";
     public static final String ATT_NOM = "nom";
     public static final String ATT_PRENOM = "prenom";
-    public static final String ATT_J_NAISSANCE = "jour_naissance";
-    public static final String ATT_M_NAISSANCE = "mois_naissance";
-    public static final String ATT_A_NAISSANCE = "annee_naissance";
+    public static final String ATT_NAISSANCE = "dateNaissance";
     public static final String ATT_ADRESSE = "adresse";
     public static final String ATT_ADRESSE2 = "adresse2";
     public static final String ATT_TELEPHONE = "telephone";
@@ -45,14 +43,16 @@ public class InscriptionFormAction extends Action {
         String civilite = request.getParameter(ATT_CIVILITE);
         String nom = request.getParameter(ATT_NOM);
         String prenom = request.getParameter(ATT_PRENOM);
-
-        int jour_naissance = Integer.parseInt(request.getParameter(ATT_J_NAISSANCE));
-        int mois_naissance = Integer.parseInt(request.getParameter(ATT_M_NAISSANCE)) - 1;
-        int annee_naissance = Integer.parseInt(request.getParameter(ATT_A_NAISSANCE));
+        
+        String dateN = request.getParameter(ATT_NAISSANCE);
+        String[] values = dateN.split("-", 3);
+        
+        int jour_naissance = Integer.parseInt(values[0]);
+        int mois_naissance = Integer.parseInt(values[1]) - 1;
+        int annee_naissance = Integer.parseInt(values[2]);
         Calendar date = new GregorianCalendar(annee_naissance, mois_naissance, jour_naissance);
 
         String adresse = request.getParameter(ATT_ADRESSE) + " " + request.getParameter(ATT_ADRESSE2);
-        
         
         
         String telephone = request.getParameter(ATT_TELEPHONE);

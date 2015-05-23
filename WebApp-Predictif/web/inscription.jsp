@@ -9,14 +9,14 @@
         <script src="inc/js/jquery-1.11.2.min.js"></script>
         <script src="inc/js/jquery-ui.min.js"></script>
         <link href="inc/css/jquery-ui.min.css" rel="stylesheet"/>
-        
+
         <style type="text/css">
             #mediums option:nth-child(odd) { background:#f3f2f2; }
         </style>
 
         <script>
-            
-            $.datepicker.setDefaults( $.datepicker.regional[ "fr" ] );
+
+            $.datepicker.setDefaults($.datepicker.regional[ "fr" ]);
             $(document).ready(function () {
                 $("#dateNaissance").datepicker({
                     changeMonth: true,
@@ -71,47 +71,9 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="date_naissance" class="col-md-2">Date de naissance</label>
-                        <div class="col-md-2">
-                            <select class="form-control" name="jour_naissance">
-                                <%
-                                    for (int i = 1; i <= 31; i++) {
-                                        out.println("<option value=" + i + ">" + i + "</option>");
-                                    }
-                                %>
-                            </select>
-                        </div>
-                        <div class="col-md-3">
-                            <select class="form-control" name="mois_naissance">
-                                <option value="1">Janvier</option>
-                                <option value="2">Février</option>
-                                <option value="3">Mars</option>
-                                <option value="4">Avril</option>
-                                <option value="5">Mai</option>
-                                <option value="6">Juin</option>
-                                <option value="7">Juillet</option>
-                                <option value="8">Août</option>
-                                <option value="9">Septembre</option>
-                                <option value="10">Octobre</option>
-                                <option value="11">Novembre</option>
-                                <option value="12">Decembre</option>
-                            </select>
-                        </div>
-
-                        <div class="col-md-3">
-                            <select class="form-control" name="annee_naissance">
-                                <%
-                                    for (int i = 1900; i <= 2015; i++) {
-                                        out.println("<option value=" + i + ">" + i + "</option>");
-                                    }
-                                %>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <label for="dateNaissance" class="col-md-2">Date de naissance</label>
                         <div class="col-md-4">
-                            <input type="text" id="dateNaissance" name="dateNaissance">
+                            <input type="text" id="dateNaissance" name="dateNaissance" required>
                         </div>
 
                     </div>
