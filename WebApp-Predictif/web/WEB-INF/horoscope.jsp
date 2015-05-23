@@ -181,10 +181,10 @@
                         $('#aRemplacer').text($(this).find('.monTexte').text());
 
                         $(this).addClass('active');
-                        if(historique !== true){
+                        if (historique !== true) {
                             $('#choisir').attr('disabled', false);
                         }
-                        
+
                     }
                 });
 
@@ -270,6 +270,7 @@
                     $(this).attr('id', "retour");
                     var span = $(" <span class='glyphicon glyphicon-repeat' aria-hidden='true'></span>");
                     $(this).append(span);
+                    $('#titre').text("Consultation historique");
                     cacheTableActive();
                     $('#typePrediction').hide();
                     $('#typePredictionHistorique').show();
@@ -285,6 +286,7 @@
                     $(this).attr('id', "historique");
                     var span = $(" <span class='glyphicon glyphicon-repeat' aria-hidden='true'></span>");
                     $(this).append(span);
+                    $('#titre').text("Sélection prédictions");
                     cacheTableActiveHistorique();
                     $('#tableSante').show();
                     tableActive = "Sante";
@@ -345,14 +347,6 @@
 
                     <fieldset> 
                         <legend>Prédictions choisies</legend> 
-                        <div class="form-group"> 
-                            <label for="chTravail" class="col-md-4">Travail </label>
-                            <div class="col-md-7"> 
-                                <input type="text" name="chTravail" id="chTravail" rows="1" class="uneditable-input" value=" - " readonly="readonly">
-                            </div>
-                            <span class="glyphicon glyphicon-remove" style="color: red"  id="iconTravail" aria-hidden="true"></span>
-
-                        </div>
 
                         <div class="form-group"> 
                             <label for="chSante" class="col-md-4">Santé </label>
@@ -361,6 +355,16 @@
                             </div>
                             <span class="glyphicon glyphicon-remove" style="color: red" id="iconSante"  aria-hidden="true"></span>
                         </div>
+
+                        <div class="form-group"> 
+                            <label for="chTravail" class="col-md-4">Travail </label>
+                            <div class="col-md-7"> 
+                                <input type="text" name="chTravail" id="chTravail" rows="1" class="uneditable-input" value=" - " readonly="readonly">
+                            </div>
+                            <span class="glyphicon glyphicon-remove" style="color: red"  id="iconTravail" aria-hidden="true"></span>
+                        </div>
+
+
                         <div class="form-group"> 
                             <label for="chAmour" class="col-md-4">Amour </label>
                             <div class="col-md-7"> 

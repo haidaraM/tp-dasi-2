@@ -9,7 +9,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import modele.Client;
 import modele.Medium;
-import modele.Prediction;
 import modele.Prediction_Amour;
 import modele.Prediction_Sante;
 import modele.Prediction_Travail;
@@ -44,8 +43,7 @@ public class PageHoroscopeAction extends Action{
         List<Prediction_Travail> listHistoTravail = service.Service.historiquePredictionsTravail(client);
         
         
-        //TODO : peut être faire des vérifications sur les valeurs reçues
-        
+                
         // on met ça dans la requête pour l'envoyer à la page
         request.setAttribute(ATT_CLIENT_CHOISI, client);
         request.setAttribute(ATT_MEDIUMS, listMedium);

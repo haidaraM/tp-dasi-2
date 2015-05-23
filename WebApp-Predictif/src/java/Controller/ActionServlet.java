@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controller;
 
 import Controller.Actions.Action;
@@ -20,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
+ * Le controleur du modèle MVC
  * @author elmhaidara
  */
 public class ActionServlet extends HttpServlet {
@@ -99,7 +94,7 @@ public class ActionServlet extends HttpServlet {
                 }
                 break;
             case "horoscope-validation":
-                if (request.getAttribute("horoscope") != null) {
+                if (request.getAttribute(HoroscopeFormAction.ATT_HOROSCOPE) != null) {
                     vue = "WEB-INF/confirmation-creation-horoscope.jsp";
                 } else {
                     request.setAttribute(Erreur.ATT_ERREUR, Erreur.ERR_CREATION_HOROSCOPE);

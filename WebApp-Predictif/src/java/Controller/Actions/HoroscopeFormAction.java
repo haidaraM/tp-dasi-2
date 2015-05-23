@@ -26,6 +26,8 @@ public class HoroscopeFormAction extends Action {
     public static final String ATT_SANTE_ID = "chSante";
     public static final String ATT_TRAVAIL_ID = "chTravail";
     public static final String ATT_AMOUR_ID = "chAmour";
+    
+    public static final String ATT_HOROSCOPE = "horoscope";
 
     @Override
     public void execute(HttpServletRequest request) {
@@ -69,7 +71,7 @@ public class HoroscopeFormAction extends Action {
         Horoscope horoscope = new Horoscope(prediction_Amour, prediction_Sante, prediction_Travail, client, medium);
         if(service.Service.creerHoroscope(horoscope)){
             request.setAttribute(ATT_CLIENT_ID, client);
-            request.setAttribute("horoscope", horoscope);
+            request.setAttribute(ATT_HOROSCOPE, horoscope);
         } else {  
             request.setAttribute(Erreur.ATT_ERREUR, Erreur.ERR_CREATION_HOROSCOPE);
             request.setAttribute(Erreur.ATT_ERREUR_TITRE, Erreur.ERR_CREATION_HOROSCOPE_TITRE);
