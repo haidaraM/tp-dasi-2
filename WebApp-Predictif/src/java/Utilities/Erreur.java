@@ -21,5 +21,9 @@ public  abstract class Erreur {
     
     /* inscription */
     public static final int ERR_INSCRIPTION_CLIENT = 2;
-    public static final String ERR_INSCRIPTION_TITRE = "Echec inscription";
+    public static final String ERR_INSCRIPTION_TITRE = "Echec inscription client";
+    
+    /* connexion employé */
+    public static final int ERR_CONNEXION_EMPLOYE = 3;
+    public static final String ERR_CONNEXION_TITRE = "Echec de connexion"; 
 }

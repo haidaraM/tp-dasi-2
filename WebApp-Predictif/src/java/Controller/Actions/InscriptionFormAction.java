@@ -33,8 +33,10 @@ public class InscriptionFormAction extends Action {
     public static final String ATT_ADRESSE = "adresse";
     public static final String ATT_ADRESSE2 = "adresse2";
     public static final String ATT_TELEPHONE = "telephone";
-    public static final String ATT_COURIEL = "couriel";
+    public static final String ATT_COURIEL = "courriel";
     public static final String ATT_MEDIUMS = "mediums";
+    
+    public static final String ATT_CLIENT = "clientInscrit";
 
     @Override
     public void execute(HttpServletRequest request) {
@@ -50,9 +52,9 @@ public class InscriptionFormAction extends Action {
         Calendar date = new GregorianCalendar(annee_naissance, mois_naissance, jour_naissance);
 
         String adresse = request.getParameter(ATT_ADRESSE) + " " + request.getParameter(ATT_ADRESSE2);
-
-        System.out.println("Adresse : '" + adresse + "'");
-
+        
+        
+        
         String telephone = request.getParameter(ATT_TELEPHONE);
         String courriel = request.getParameter(ATT_COURIEL);
         List<Medium> listMedium = new ArrayList<>();
@@ -66,11 +68,11 @@ public class InscriptionFormAction extends Action {
         Client client = new Client(nom, prenom, civilite, date, adresse, telephone, courriel, listMedium);
 
         if (service.Service.creerClient(client)) {
-            request.setAttribute("clientInscrit", client);
+            request.setAttribute(ATT_CLIENT, client);
         } else {
             request.setAttribute(Erreur.ATT_ERREUR, Erreur.ERR_INSCRIPTION_CLIENT);
             request.setAttribute(Erreur.ATT_ERREUR_TITRE, Erreur.ERR_INSCRIPTION_TITRE);
-            request.setAttribute("clientInscrit", null);
+            request.setAttribute(ATT_CLIENT, null);
         }
 
     }

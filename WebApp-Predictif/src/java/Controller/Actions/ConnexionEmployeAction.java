@@ -17,24 +17,24 @@ import modele.Employe;
 public class ConnexionEmployeAction extends Action {
 
     public static final String ATT_EMPLOYE = "employe";
-    
-    Employe employe;
-    String vue;
 
     @Override
     public void execute(HttpServletRequest request) {
 
+        HttpSession session;
         String login = request.getParameter("login");
         String motDePasse = request.getParameter("password");
 
-        employe = service.Service.connexionEmploye(login, motDePasse);
+        Employe employe = service.Service.connexionEmploye(login, motDePasse);
         if (employe != null) {
-            HttpSession session =  request.getSession(true);
-            
+            session = request.getSession(true);
+
             session.setAttribute(ATT_EMPLOYE, employe);
-            
+            request.setAttribute(ATT_EMPLOYE, employe);
+
             List<Client> listClient = service.Service.obtenirClients();
             request.setAttribute("listClient", listClient);
+        } else {
             
         }
 

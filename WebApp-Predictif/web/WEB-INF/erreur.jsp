@@ -4,7 +4,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>${erreurTitre} </title>
+        <title>Erreur! </title>
         <link href="inc/css/bootstrap.min.css" rel="stylesheet">
     </head>
     <body class="container">
@@ -24,14 +24,21 @@
             %>
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
             <span class="sr-only">Error:</span>
-            Echec lors de la création de votre compte.
+            Un problème est servenu lors de la création de votre compte.
             <%
                     break;
                 case Erreur.ERR_CREATION_HOROSCOPE:
             %>
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
             <span class="sr-only">Error:</span>
-            Echec lors de la création de l'horoscope.
+            Un problème est servenu lors de la création de l'horoscope.
+            <%
+                    break;
+                case Erreur.ERR_CONNEXION_EMPLOYE:
+            %>
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            Problème de connexion. <strong>Login</strong> ou <strong>mot de passe incorrect </strong>
             <%
                             break;
                     }

@@ -8,7 +8,10 @@
         <link href="inc/css/bootstrap.min.css" rel="stylesheet"/>
         <script src="inc/js/jquery-1.11.2.min.js"></script>
         <script src="inc/js/bootstrap.min.js"></script>
-       
+        <style type="text/css">
+            #mediums option:nth-child(odd) { background: #ccccff; }
+        </style>
+
     </head>
     <body class="container">
         <div class="row">
@@ -91,13 +94,13 @@
                     <div class="form-group"> 
                         <label for="adresse" class="col-md-2">Adresse </label>
                         <div class="col-md-6"> 
-                            <input type="text" class="form-control" id="adresse" name="adresse" placeholder="Ex : 24 avenue des belles fontaines">
+                            <input type="text" required class="form-control" id="adresse" name="adresse" placeholder="Ex : 24 avenue des belles fontaines">
                         </div>      
                     </div>
                     <div class="form-group"> 
                         <label for="adresse2" class="col-md-2"> </label>
                         <div class="col-md-6"> 
-                            <input type="text" class="form-control" id="adresse2" name="adresse2" placeholder="Ex : 91600 Savigny sur orge">
+                            <input type="text" class="form-control" required id="adresse2" name="adresse2" placeholder="Ex : 91600 Savigny sur orge">
                         </div>      
                     </div>
 
