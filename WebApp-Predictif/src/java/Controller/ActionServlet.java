@@ -90,7 +90,9 @@ public class ActionServlet extends HttpServlet {
                 if (adminConnecte(request)) {
                     vue = "WEB-INF/horoscope.jsp";
                 } else {
-                    vue = "index.jsp";
+                    request.setAttribute(Erreur.ATT_ERREUR, Erreur.ERR_ACCES_REFUSE);
+                    request.setAttribute(Erreur.ATT_ERREUR_TITRE, Erreur.ERR_ACCES_REFUSE_TITRE);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+                    vue = "WEB-INF/erreur.jsp";
                 }
                 break;
             case "horoscope-validation":

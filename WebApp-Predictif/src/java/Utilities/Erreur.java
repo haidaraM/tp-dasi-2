@@ -25,5 +25,9 @@ public  abstract class Erreur {
     
     /* connexion employé */
     public static final int ERR_CONNEXION_EMPLOYE = 3;
-    public static final String ERR_CONNEXION_TITRE = "Echec de connexion"; 
+    public static final String ERR_CONNEXION_TITRE = "Echec de connexion";
+    
+    /* accès refusé */
+    public static final int ERR_ACCES_REFUSE = 4;
+    public static final String ERR_ACCES_REFUSE_TITRE = "Accès refusé";
 }

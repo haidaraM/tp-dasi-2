@@ -40,7 +40,20 @@
             <span class="sr-only">Error:</span>
             Problème de connexion. <strong>Login</strong> ou <strong>mot de passe incorrect </strong>
             <%
-                            break;
+                    break;
+                case Erreur.ERR_ACCES_REFUSE:
+            %>
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            Vous devez vous connecter pour acceder à cette page
+            <%
+                    break;
+                default:
+            %>
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span> Une erreur est survenue
+            <% break;
+
                     }
                 }
             %>
