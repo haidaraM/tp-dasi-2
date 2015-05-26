@@ -51,7 +51,7 @@
                 default:
             %>
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-            <span class="sr-only">Error:</span> Une erreur est survenue
+            <span class="sr-only">Error:</span> Une erreur est survenue. Les paramètres semblent être invalides.
             <% break;
 
                     }

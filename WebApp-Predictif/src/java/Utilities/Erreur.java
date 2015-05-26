@@ -30,4 +30,8 @@ public  abstract class Erreur {
     /* accès refusé */
     public static final int ERR_ACCES_REFUSE = 4;
     public static final String ERR_ACCES_REFUSE_TITRE = "Accès refusé";
+    
+    /* todo invalide */
+    public static final int ERR_TODO_INVALIDE = 5;
+    public static final String ERR_TODO_INVALIDE_TITRE = "Paramètres URL invalides ";
 }

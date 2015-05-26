@@ -2,6 +2,7 @@ package Controller;
 
 import Controller.Actions.Action;
 import Controller.Actions.ConnexionEmployeAction;
+import Controller.Actions.ErreurAction;
 import Controller.Actions.HoroscopeFormAction;
 import Controller.Actions.InscriptionFormAction;
 import Controller.Actions.PageHoroscopeAction;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Le controleur du modèle MVC
+ *
  * @author elmhaidara
  */
 public class ActionServlet extends HttpServlet {
@@ -58,7 +60,8 @@ public class ActionServlet extends HttpServlet {
             case "horoscope-validation":
                 action = new HoroscopeFormAction();
                 break;
-            default:
+            default: // paramètre todo invalide => erreur
+                action = new ErreurAction();
                 break;
         }
         return action;
@@ -93,7 +96,7 @@ public class ActionServlet extends HttpServlet {
                     vue = "WEB-INF/horoscope.jsp";
                 } else {
                     request.setAttribute(Erreur.ATT_ERREUR, Erreur.ERR_ACCES_REFUSE);
-                    request.setAttribute(Erreur.ATT_ERREUR_TITRE, Erreur.ERR_ACCES_REFUSE_TITRE);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+                    request.setAttribute(Erreur.ATT_ERREUR_TITRE, Erreur.ERR_ACCES_REFUSE_TITRE);
                     vue = "WEB-INF/erreur.jsp";
                 }
                 break;
@@ -107,7 +110,9 @@ public class ActionServlet extends HttpServlet {
                 }
                 break;
             default:
-                vue = "index.jsp";
+                request.setAttribute(Erreur.ATT_ERREUR, Erreur.ERR_TODO_INVALIDE);
+                request.setAttribute(Erreur.ATT_ERREUR_TITRE, Erreur.ERR_TODO_INVALIDE_TITRE);
+                vue = "WEB-INF/erreur.jsp";
                 break;
         }
         return vue;
