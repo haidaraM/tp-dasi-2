@@ -10,8 +10,7 @@
         <script src="inc/js/jquery-1.11.2.min.js"></script>
         <script src="inc/js/jquery.dataTables.min.js"></script>
         <script src="inc/js/dataTables.bootstrap.js"></script>
-        <script src="inc/js/jqBootstrapValidation.js"></script>
-
+        
         <script>
             $(document).ready(function () {
 
@@ -30,7 +29,8 @@
                 var choixAmour = false;
                 var choixTravail = false;
                 var historique = false;
-
+                
+                /* cache la datatable active pour les tables normales */
                 function cacheTableActive() {
                     if (tableActive === "Sante") {
                         $('#tableSante').hide();
@@ -40,7 +40,19 @@
                         $('#tableAmour').hide();
                     }
                 }
+                
+                /* affiche la datatable active pour les tables normales */
+                function afficheTableActive(){
+                    if (tableActive === "Sante") {
+                        $('#tableSante').show();
+                    } else if (tableActive === "Travail") {
+                        $('#tableTravail').show();
+                    } else if (tableActive === "Amour") {
+                        $('#tableAmour').show();
+                    }
+                }
 
+                /* cache la datatable active pour les tables historique */
                 function cacheTableActiveHistorique() {
                     if (tableActiveHistorique === "SanteHistorique") {
                         $('#tableSanteHistorique').hide();
@@ -48,6 +60,16 @@
                         $('#tableTravailHistorique').hide();
                     } else if (tableActiveHistorique === "AmourHistorique") {
                         $('#tableAmourHistorique').hide();
+                    }
+                }
+                /* affiche la datatable active pour les tables historique */
+                function afficheLaTableActiveHistorique(){
+                    if (tableActiveHistorique === "SanteHistorique") {
+                        $('#tableSanteHistorique').show();
+                    } else if (tableActiveHistorique === "TravailHistorique") {
+                        $('#tableTravailHistorique').show();
+                    } else if (tableActiveHistorique === "AmourHistorique") {
+                        $('#tableAmourHistorique').show();
                     }
                 }
 
@@ -133,8 +155,7 @@
                     },
                     "columnDefs": [
                         {"width": "10%", "targets": 0},
-                        {"width": "5%", "targets": 1},
-                        {"width": "5%", "targets": 2}
+                        {"width": "5%", "targets": 1}
                     ]
                 });
 
@@ -142,17 +163,15 @@
                 $('#listPredictionSanteHistorique').DataTable({
                     scrollY: 405,
                     paging: false,
-                    "drawCallback": function () {
+                   "drawCallback": function () {
                         $('.monTexte').css("max-height", "15px");
                         $('.monTexte').css("max-width", '15px');
                         $('.monTexte').css("white-space", "nowrap");
                         $('.monTexte').css("overflow", "hidden");
-
                     },
                     "columnDefs": [
                         {"width": "10%", "targets": 0},
-                        {"width": "5%", "targets": 1},
-                        {"width": "5%", "targets": 2}
+                        {"width": "5%", "targets": 1}
                     ]
                 });
 
@@ -161,10 +180,12 @@
                 $('#tableAmour').hide();
 
 
-
+                /* on caches les 3 datatables historiques */
                 $('#tableAmourHistorique').hide();
                 $('#tableSanteHistorique').hide();
                 $('#tableTravailHistorique').hide();
+                
+                /* on cache la selection de l'historique */
                 $('#typePredictionHistorique').hide();
 
 
@@ -174,6 +195,7 @@
                         $(this).removeClass('active');
                         $('#aRemplacer').text('');
                         $('#choisir').attr('disabled', true);
+                        
                     }
                     else {
                         $('tr.active').removeClass('active');
@@ -188,7 +210,7 @@
                     }
                 });
 
-                /* implémentation du chargement d'une autre table sur le onchange du select */
+                /* implémentation du chargement d'une autre datatable sur le onchange du select */
                 $('#typePrediction').on('change', function () {
                     if (this.value === "Sante") {
                         $('#tableSante').show();
@@ -207,7 +229,7 @@
 
                 });
 
-                /* implémentation du chargement d'une autre table sur le onchange du select */
+                /* implémentation du chargement d'une autre datatable sur le onchange du select de l'historique*/
                 $('#typePredictionHistorique').on('change', function () {
                     if (this.value === "SanteHistorique") {
                         $('#tableSanteHistorique').show();
@@ -223,7 +245,6 @@
                         tableActiveHistorique = this.value;
                     }
 
-                    console.log(this.value);
                     desactiveBoutonChoisir();
 
                 });
@@ -272,10 +293,12 @@
                     $(this).append(span);
                     $('#titre').text("Consultation historique");
                     cacheTableActive();
+                    /* on cache l'ancienne liste de selection et on affiche la nouvelle */
                     $('#typePrediction').hide();
                     $('#typePredictionHistorique').show();
-                    $('#tableSanteHistorique').show();
-                    tableActiveHistorique = "SanteHistorique";
+                    
+                    afficheLaTableActiveHistorique();
+                    
                     historique = true;
                     desactiveBoutonChoisir();
                 });
@@ -288,9 +311,10 @@
                     $(this).append(span);
                     $('#titre').text("Sélection prédictions");
                     cacheTableActiveHistorique();
-                    $('#tableSante').show();
-                    tableActive = "Sante";
+                    
+                    afficheTableActive();
                     historique = false;
+                    /* on cache l'ancienne liste de selection et on affiche la nouvelle */
                     $('#typePrediction').show();
                     $('#typePredictionHistorique').hide();
                 });

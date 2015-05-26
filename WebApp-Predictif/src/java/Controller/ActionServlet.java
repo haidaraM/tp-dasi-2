@@ -58,6 +58,8 @@ public class ActionServlet extends HttpServlet {
             case "horoscope-validation":
                 action = new HoroscopeFormAction();
                 break;
+            default:
+                break;
         }
         return action;
     }
