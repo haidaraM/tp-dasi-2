@@ -78,7 +78,7 @@ public class ActionServlet extends HttpServlet {
                     vue = "WEB-INF/confirmation-inscription.jsp";
                 } else {
                     request.setAttribute(Erreur.ATT_ERREUR, Erreur.ERR_INSCRIPTION_CLIENT);
-                    request.setAttribute(Erreur.ATT_ERREUR_TITRE, Erreur.ATT_ERREUR_TITRE);
+                    request.setAttribute(Erreur.ATT_ERREUR_TITRE, Erreur.ERR_INSCRIPTION_TITRE);
                     vue = "WEB-INF/erreur.jsp";
                 }
                 break;

@@ -1,3 +1,6 @@
+<%@page import="modele.Horoscope"%>
+<%@page import="Controller.Actions.HoroscopeFormAction"%>
+<%@page import="modele.Client"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -18,7 +21,7 @@
 
         <div id="detail">
             <h3>
-                Récapitulatif de la création de l'horoscope
+                Récapitulatif de la création de l'horoscope - Mail envoyé à l'utilisateur
             </h3>
 
             <div id="civilite">
@@ -30,7 +33,17 @@
             <div id="moreInfo">
                 Votre numéro de client : ${client.id} <br/>
                 Votre signe : ${client.signe.nom} <br/>
-                Vos mediums favoris : 
+                Vos mediums favoris : <c:forEach var="medium" items="${listMedium}">
+                    ${medium.nom}; 
+                </c:forEach> <br/>
+                
+                Le <% java.text.DateFormat df=new java.text.SimpleDateFormat("dd/MM/yyyy"); %>
+                <%= df.format(new java.util.Date()) %> <br/>
+                Cher(e) ${client.prenom}, aujourd'hui votre voyance vous est offerte par ${horoscope.medium.nom}.<br/>
+                Travail (${horoscope.pT.icone}) : ${horoscope.pT.texte} <br/>
+                Sante (${horoscope.pS.icone}) : ${horoscope.pS.texte} <br/> 
+                Amour (${horoscope.pA.icone}) : ${horoscope.pA.texte} <br/> 
+                Votre signe partenaire : ${horoscope.pA.partenaire} <br/>
             </div>
         </div>
         <br/>

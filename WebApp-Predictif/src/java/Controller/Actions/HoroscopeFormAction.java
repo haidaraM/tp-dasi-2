@@ -20,18 +20,18 @@ import modele.Prediction_Travail;
 public class HoroscopeFormAction extends Action {
     
 
-    public static final String ATT_CLIENT_ID = "client";
+    public static final String ATT_CLIENT = "client";
     public static final String ATT_MEDIUM = "medium";
     public static final String ATT_SANTE_ID = "chSante";
     public static final String ATT_TRAVAIL_ID = "chTravail";
     public static final String ATT_AMOUR_ID = "chAmour";
-    
+    public static final String ATT_LIST_MEDIUM ="listMedium";
     public static final String ATT_HOROSCOPE = "horoscope";
 
     @Override
     public void execute(HttpServletRequest request) {
                
-        int idClient = Integer.parseInt(request.getParameter(ATT_CLIENT_ID));
+        int idClient = Integer.parseInt(request.getParameter(ATT_CLIENT));
         System.out.println("Client : " + idClient);
 
         int idMedium = Integer.parseInt(request.getParameter(ATT_MEDIUM));
@@ -40,11 +40,13 @@ public class HoroscopeFormAction extends Action {
         Client client = service.Service.obtenirClientById(idClient);
         if (client == null) {
             System.out.println("Impossible de récuperer le client");
+            return;
         }
 
         Medium medium = service.Service.obtenirMediumById(idMedium);
         if (medium == null) {
             System.out.println("Impossible de récuperer le médium");
+            return;
         }
 
         int idPredictionAmour = Integer.parseInt(request.getParameter(ATT_AMOUR_ID));
@@ -52,6 +54,7 @@ public class HoroscopeFormAction extends Action {
         Prediction_Amour prediction_Amour = service.Service.obtenirPredictionAmourById(idPredictionAmour);
         if (prediction_Amour == null) {
             System.out.println("Impossible de récuperer la prédiction amour");
+            return;
         }
 
         int idPredictionTravail = Integer.parseInt(request.getParameter(ATT_TRAVAIL_ID));
@@ -59,18 +62,23 @@ public class HoroscopeFormAction extends Action {
 
         if (prediction_Travail == null) {
             System.out.println("Impossible de récuperer la prédiction travail");
+            return;
         }
 
         int idPredictionSante = Integer.parseInt(request.getParameter(ATT_SANTE_ID));
         Prediction_Sante prediction_Sante = service.Service.obtenirPredictionSanteById(idPredictionSante);
         if(prediction_Sante==null){
             System.out.println("Impossible de récuperer la prédiction sante");
+            return;
         }
         
         Horoscope horoscope = new Horoscope(prediction_Amour, prediction_Sante, prediction_Travail, client, medium);
         if(service.Service.creerHoroscope(horoscope)){
-            request.setAttribute(ATT_CLIENT_ID, client);
+            /* on envoie les infos à la page de confirmation pour affichage */
+            request.setAttribute(ATT_CLIENT, client);
             request.setAttribute(ATT_HOROSCOPE, horoscope);
+            request.setAttribute(ATT_LIST_MEDIUM, client.getMedium());
+            
         } 
 
     }

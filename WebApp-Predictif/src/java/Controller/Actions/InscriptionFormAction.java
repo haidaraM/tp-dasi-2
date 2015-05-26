@@ -5,7 +5,6 @@
  */
 package Controller.Actions;
 
-import Utilities.Erreur;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -70,8 +69,6 @@ public class InscriptionFormAction extends Action {
         if (service.Service.creerClient(client)) {
             request.setAttribute(ATT_CLIENT, client);
         } else {
-            request.setAttribute(Erreur.ATT_ERREUR, Erreur.ERR_INSCRIPTION_CLIENT);
-            request.setAttribute(Erreur.ATT_ERREUR_TITRE, Erreur.ERR_INSCRIPTION_TITRE);
             request.setAttribute(ATT_CLIENT, null);
         }
 
