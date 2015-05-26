@@ -43,7 +43,7 @@ public class ActionServlet extends HttpServlet {
     }
 
     private Action getAction(String todo) {
-        Action action = null;
+        Action action;
         switch (todo) {
             case "page-inscription":
                 action = new PageInscriptionAction();

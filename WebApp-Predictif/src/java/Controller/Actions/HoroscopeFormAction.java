@@ -5,7 +5,6 @@
  */
 package Controller.Actions;
 
-import Utilities.Erreur;
 import javax.servlet.http.HttpServletRequest;
 import modele.Client;
 import modele.Horoscope;
@@ -45,37 +44,34 @@ public class HoroscopeFormAction extends Action {
 
         Medium medium = service.Service.obtenirMediumById(idMedium);
         if (medium == null) {
-            System.out.println("Impossible de récupere le médium");
+            System.out.println("Impossible de récuperer le médium");
         }
 
         int idPredictionAmour = Integer.parseInt(request.getParameter(ATT_AMOUR_ID));
 
         Prediction_Amour prediction_Amour = service.Service.obtenirPredictionAmourById(idPredictionAmour);
         if (prediction_Amour == null) {
-            System.out.println("Impossible de récuperer la prédictiona amour");
+            System.out.println("Impossible de récuperer la prédiction amour");
         }
 
         int idPredictionTravail = Integer.parseInt(request.getParameter(ATT_TRAVAIL_ID));
         Prediction_Travail prediction_Travail = service.Service.obtenirPredictionTravailById(idPredictionTravail);
 
         if (prediction_Travail == null) {
-            System.out.println("Impossible de récuperer la prédictiona travail");
+            System.out.println("Impossible de récuperer la prédiction travail");
         }
 
         int idPredictionSante = Integer.parseInt(request.getParameter(ATT_SANTE_ID));
         Prediction_Sante prediction_Sante = service.Service.obtenirPredictionSanteById(idPredictionSante);
         if(prediction_Sante==null){
-            System.out.println("Impossible de récuperer la prédictiona sante");
+            System.out.println("Impossible de récuperer la prédiction sante");
         }
         
         Horoscope horoscope = new Horoscope(prediction_Amour, prediction_Sante, prediction_Travail, client, medium);
         if(service.Service.creerHoroscope(horoscope)){
             request.setAttribute(ATT_CLIENT_ID, client);
             request.setAttribute(ATT_HOROSCOPE, horoscope);
-        } else {  
-            request.setAttribute(Erreur.ATT_ERREUR, Erreur.ERR_CREATION_HOROSCOPE);
-            request.setAttribute(Erreur.ATT_ERREUR_TITRE, Erreur.ERR_CREATION_HOROSCOPE_TITRE);
-        }
+        } 
 
     }
 
