@@ -10,7 +10,7 @@
         <script src="inc/js/jquery-1.11.2.min.js"></script>
         <script src="inc/js/jquery.dataTables.min.js"></script>
         <script src="inc/js/dataTables.bootstrap.js"></script>
-        
+
         <script>
             $(document).ready(function () {
 
@@ -29,7 +29,7 @@
                 var choixAmour = false;
                 var choixTravail = false;
                 var historique = false;
-                
+
                 /* cache la datatable active pour les tables normales */
                 function cacheTableActive() {
                     if (tableActive === "Sante") {
@@ -40,9 +40,9 @@
                         $('#tableAmour').hide();
                     }
                 }
-                
+
                 /* affiche la datatable active pour les tables normales */
-                function afficheTableActive(){
+                function afficheTableActive() {
                     if (tableActive === "Sante") {
                         $('#tableSante').show();
                     } else if (tableActive === "Travail") {
@@ -63,7 +63,7 @@
                     }
                 }
                 /* affiche la datatable active pour les tables historique */
-                function afficheLaTableActiveHistorique(){
+                function afficheLaTableActiveHistorique() {
                     if (tableActiveHistorique === "SanteHistorique") {
                         $('#tableSanteHistorique').show();
                     } else if (tableActiveHistorique === "TravailHistorique") {
@@ -77,6 +77,7 @@
                 $('#listPredictionSante').DataTable({
                     scrollY: 405,
                     paging: false,
+                    "info": false,
                     "drawCallback": function () {
                         $('.monTexte').css("max-height", "15px");
                         $('.monTexte').css("max-width", '15px');
@@ -93,6 +94,7 @@
                 $('#listPredictionTravail').DataTable({
                     scrollY: 405,
                     paging: false,
+                    "info": false,
                     "drawCallback": function () {
                         $('.monTexte').css("max-height", "15px");
                         $('.monTexte').css("max-width", '15px');
@@ -121,7 +123,8 @@
                         {"width": "10%", "targets": 0},
                         {"width": "5%", "targets": 1},
                         {"width": "5%", "targets": 2}
-                    ]
+                    ],
+                    "info": false
                 });
 
                 /* création de la datatable historique amour */
@@ -139,13 +142,15 @@
                         {"width": "10%", "targets": 0},
                         {"width": "5%", "targets": 1},
                         {"width": "5%", "targets": 2}
-                    ]
+                    ],
+                    "info": false
                 });
 
                 /* création de la datatable historique travail */
                 $('#listPredictionTravailHistorique').DataTable({
                     scrollY: 405,
                     paging: false,
+                    "info": false,
                     "drawCallback": function () {
                         $('.monTexte').css("max-height", "15px");
                         $('.monTexte').css("max-width", '15px');
@@ -157,13 +162,14 @@
                         {"width": "10%", "targets": 0},
                         {"width": "5%", "targets": 1}
                     ]
+                    
                 });
 
                 /* création de la datatable historique sante */
                 $('#listPredictionSanteHistorique').DataTable({
                     scrollY: 405,
                     paging: false,
-                   "drawCallback": function () {
+                    "drawCallback": function () {
                         $('.monTexte').css("max-height", "15px");
                         $('.monTexte').css("max-width", '15px');
                         $('.monTexte').css("white-space", "nowrap");
@@ -172,7 +178,8 @@
                     "columnDefs": [
                         {"width": "10%", "targets": 0},
                         {"width": "5%", "targets": 1}
-                    ]
+                    ],
+                    "info": false
                 });
 
                 // on cache les autres datatables
@@ -184,7 +191,7 @@
                 $('#tableAmourHistorique').hide();
                 $('#tableSanteHistorique').hide();
                 $('#tableTravailHistorique').hide();
-                
+
                 /* on cache la selection de l'historique */
                 $('#typePredictionHistorique').hide();
 
@@ -195,7 +202,7 @@
                         $(this).removeClass('active');
                         $('#aRemplacer').text('');
                         $('#choisir').attr('disabled', true);
-                        
+
                     }
                     else {
                         $('tr.active').removeClass('active');
@@ -296,9 +303,9 @@
                     /* on cache l'ancienne liste de selection et on affiche la nouvelle */
                     $('#typePrediction').hide();
                     $('#typePredictionHistorique').show();
-                    
+
                     afficheLaTableActiveHistorique();
-                    
+
                     historique = true;
                     desactiveBoutonChoisir();
                 });
@@ -311,7 +318,7 @@
                     $(this).append(span);
                     $('#titre').text("Sélection prédictions");
                     cacheTableActiveHistorique();
-                    
+
                     afficheTableActive();
                     historique = false;
                     /* on cache l'ancienne liste de selection et on affiche la nouvelle */

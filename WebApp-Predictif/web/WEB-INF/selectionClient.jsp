@@ -14,18 +14,20 @@
 
         <script>
             $(document).ready(function () {
-                
-                $('#validation').attr('disabled',true);
-                
-                $('#listeClients').DataTable();
 
+                $('#validation').attr('disabled', true);
+
+                $('#listeClients').DataTable({
+                    "language": {
+                        "url": "//cdn.datatables.net/plug-ins/1.10.7/i18n/French.json"}
+                });
                 $('#listeClients tbody').on('click', 'tr', function () {
                     if ($(this).hasClass('active')) {
                         $(this).removeClass('active');
-                        $('#validation').attr('disabled',true);
+                        $('#validation').attr('disabled', true);
                     }
                     else {
-                        $('tbody tr').each(function (){
+                        $('tbody tr').each(function () {
                             $(this).removeClass('active');
                         });
                         $('#validation').attr('disabled', false);
@@ -34,12 +36,12 @@
                         $(this).addClass('active');
                     }
                 });
-                
-                function majLien(idClient){
-                    var newUrl = "ActionServlet?todo=horoscope&idCl="+ idClient;
-                    $('#validation').attr('href',newUrl);
+
+                function majLien(idClient) {
+                    var newUrl = "ActionServlet?todo=horoscope&idCl=" + idClient;
+                    $('#validation').attr('href', newUrl);
                 }
-               
+
             });
         </script>
     </head>
