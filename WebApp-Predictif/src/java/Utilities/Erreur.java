@@ -34,4 +34,8 @@ public  abstract class Erreur {
     /* todo invalide */
     public static final int ERR_TODO_INVALIDE = 5;
     public static final String ERR_TODO_INVALIDE_TITRE = "Paramètres URL invalides ";
+    
+    /* client introuvable */
+    public static final int ERR_CLIENT_INTROUVABLE = 6;
+    public static final String ERR_CLIENT_INTROUVABLE_TITRE = "Client introuvable ou paramètre incorrecte";
 }

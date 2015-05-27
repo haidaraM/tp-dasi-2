@@ -28,7 +28,8 @@ public class ConnexionEmployeAction extends Action {
 
             session.setAttribute(ATT_EMPLOYE, employe);
             request.setAttribute(ATT_EMPLOYE, employe);
-
+            // Ici on aurait du recupérer la liste des clients pour l'employé qui s'est connecté
+            // mais le service n'a pas été implémentée.
             List<Client> listClient = service.Service.obtenirClients();
             request.setAttribute("listClient", listClient);
         } else {

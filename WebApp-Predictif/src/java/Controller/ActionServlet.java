@@ -60,7 +60,7 @@ public class ActionServlet extends HttpServlet {
             case "horoscope-validation":
                 action = new HoroscopeFormAction();
                 break;
-            default: // paramètre todo invalide => erreur
+            default: // paramètre todo inconnu => erreur
                 action = new ErreurAction();
                 break;
         }
@@ -77,11 +77,11 @@ public class ActionServlet extends HttpServlet {
                 if (request.getAttribute(InscriptionFormAction.ATT_CLIENT) != null) {
                     // tout s'est bien passé
                     vue = "WEB-INF/confirmation-inscription.jsp";
-                } else if(request.getAttribute(InscriptionFormAction.ATT_ERREURS) != null) {
+                } else if (request.getAttribute(InscriptionFormAction.ATT_ERREURS) != null) {
                     // un des champs est invalide, on le renvoie sur la même page
-                    vue="inscription.jsp";
+                    vue = "inscription.jsp";
                 } else {
-                    // un probleme lié à la base de donnée peut être
+                    // sinon y a eu un probleme lié à la base de donnée peut être
                     request.setAttribute(Erreur.ATT_ERREUR, Erreur.ERR_INSCRIPTION_CLIENT);
                     request.setAttribute(Erreur.ATT_ERREUR_TITRE, Erreur.ERR_INSCRIPTION_TITRE);
                     vue = "WEB-INF/erreur.jsp";
@@ -98,10 +98,21 @@ public class ActionServlet extends HttpServlet {
                 break;
             case "horoscope":
                 if (adminConnecte(request)) {
-                    vue = "WEB-INF/horoscope.jsp";
+                    
+                    if (request.getAttribute(PageHoroscopeAction.ATT_CLIENT_CHOISI) == null) {
+                        // soit le client est introuvable soit l'url (id ou nom du parametre) est incorrect
+                        request.setAttribute(Erreur.ATT_ERREUR, Erreur.ERR_CLIENT_INTROUVABLE);
+                        request.setAttribute(Erreur.ATT_ERREUR_TITRE, Erreur.ERR_CLIENT_INTROUVABLE_TITRE);
+                        vue = "WEB-INF/erreur.jsp";
+                    } else {
+                        vue = "WEB-INF/horoscope.jsp";
+                    }
+                    
                 } else {
+                    // erreur d'accès
                     request.setAttribute(Erreur.ATT_ERREUR, Erreur.ERR_ACCES_REFUSE);
                     request.setAttribute(Erreur.ATT_ERREUR_TITRE, Erreur.ERR_ACCES_REFUSE_TITRE);
+
                     vue = "WEB-INF/erreur.jsp";
                 }
                 break;

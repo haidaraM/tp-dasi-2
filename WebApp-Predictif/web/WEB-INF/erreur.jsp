@@ -48,6 +48,12 @@
             Vous devez vous connecter pour acceder à cette page
             <%
                     break;
+                case Erreur.ERR_CLIENT_INTROUVABLE:
+            %>
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            Impossible de trouver le client ou le nom du paramètre est incorrecte.
+            <% break;
                 default:
             %>
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
