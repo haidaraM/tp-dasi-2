@@ -74,9 +74,14 @@ public class ActionServlet extends HttpServlet {
                 vue = "inscription.jsp";
                 break;
             case "traitement-inscription":
-                if (request.getAttribute("clientInscrit") != null) {
+                if (request.getAttribute(InscriptionFormAction.ATT_CLIENT) != null) {
+                    // tout s'est bien passé
                     vue = "WEB-INF/confirmation-inscription.jsp";
+                } else if(request.getAttribute(InscriptionFormAction.ATT_ERREURS) != null) {
+                    // un des champs est invalide, on le renvoie sur la même page
+                    vue="inscription.jsp";
                 } else {
+                    // un probleme lié à la base de donnée peut être
                     request.setAttribute(Erreur.ATT_ERREUR, Erreur.ERR_INSCRIPTION_CLIENT);
                     request.setAttribute(Erreur.ATT_ERREUR_TITRE, Erreur.ERR_INSCRIPTION_TITRE);
                     vue = "WEB-INF/erreur.jsp";

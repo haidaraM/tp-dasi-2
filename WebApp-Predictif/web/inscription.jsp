@@ -29,6 +29,12 @@
             });
 
         </script>
+        
+        <style>
+            .erreur {
+                color: red;
+            }
+        </style>
 
     </head>
     <body class="container">
@@ -59,49 +65,71 @@
                     <div class="form-group">
                         <label for="nom" class="col-md-2">Nom </label>
                         <div class="col-md-5">
-                            <input type="text" class="form-control" id="nom" name="nom" placeholder="Durand" required>
+                            <input type="text" value="<c:out value="${param.nom}"/>" class="form-control" id="nom" name="nom" placeholder="Durand" required>
                         </div>
+                        <div class="erreur">
+                            <c:if test="${erreurs['nom'] != null}">
+                            <span class="glyphicon glyphicon-remove" id="iconTravail" aria-hidden="true"> ${erreurs['nom']}</span>
+                        </c:if>
+                        </div>
+                        
                     </div>
 
                     <div class="form-group">
                         <label for="prenom" class="col-md-2">Prenom </label>
                         <div class="col-md-5">
-                            <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Paul" required>
+                            <input type="text" value="<c:out value="${param.prenom}"/>" class="form-control" id="prenom" name="prenom" placeholder="Paul" required>
+                        </div>
+                        <div class="erreur">
+                            <c:if test="${erreurs['prenom'] != null}">
+                                <span class="glyphicon glyphicon-remove" id="iconTravail" aria-hidden="true"> ${erreurs['prenom']}</span>
+                            </c:if>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="dateNaissance" class="col-md-2">Date de naissance</label>
                         <div class="col-md-4">
-                            <input type="text" id="dateNaissance" name="dateNaissance" required>
+                            <input type="text" value="<c:out value="${param.dateNaissance}"/>" id="dateNaissance" name="dateNaissance" required>
                         </div>
-
+                        <div class="erreur">
+                            <c:if test="${erreurs['dateNaissance'] != null}">
+                            <span class="glyphicon glyphicon-remove" id="iconTravail" aria-hidden="true"> ${erreurs['dateNaissance']}</span>
+                        </c:if>
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label for="adresse" class="col-md-2">Adresse </label>
                         <div class="col-md-6">
-                            <input type="text" required class="form-control" id="adresse" name="adresse" placeholder="Ex : 24 avenue des belles fontaines">
+                            <input type="text" value="<c:out value="${param.adresse}"/>" required class="form-control" id="adresse" name="adresse" placeholder="Ex : 24 avenue des belles fontaines">
                         </div>
+                        <div class="erreur">
+                            <c:if test="${erreurs['adresse'] != null}">
+                            <span class="glyphicon glyphicon-remove" id="iconTravail" aria-hidden="true"> ${erreurs['adresse']}</span>
+                        </c:if>
+                        </div>
+                        
+
                     </div>
                     <div class="form-group">
                         <label for="adresse2" class="col-md-2"> </label>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" required id="adresse2" name="adresse2" placeholder="Ex : 91600 Savigny sur orge">
+                            <input type="text" class="form-control"value="<c:out value="${param.adresse2}"/>" id="adresse2" name="adresse2" placeholder="Ex : 91600 Savigny sur orge">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="telephone" class="col-md-2">Téléphone </label>
                         <div class="col-md-4">
-                            <input type="tel" class="form-control" id="telephone" name="telephone" placeholder="Ex : 0606060606">
+                            <input type="tel" value="<c:out value="${param.telephone}"/>" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$" class="form-control" id="telephone" name="telephone" placeholder="Ex : 0606060606">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="courriel" class="col-md-2">Courriel </label>
                         <div class="col-md-5">
-                            <input type="email" class="form-control" id="courriel" name="courriel" placeholder="Ex : paul@durand.fr" required >
+                            <input type="email" value="<c:out value="${param.courriel}"/>" class="form-control" id="courriel" name="courriel" placeholder="Ex : paul@durand.fr" required >
                         </div>
                     </div>
                 </div>
@@ -113,9 +141,9 @@
                         <div class="col-md-8">
                             <select multiple class="form-control" name="mediums" id="mediums" style="height: 100%" required size="20">
                                 <c:forEach var="medium" items="${listMedium}">
-                                    <c:out value="<option value=${medium.id}> " escapeXml="false" />
-                                    <c:out value="${medium.nom}" />
-                                    <c:out value="</option>" escapeXml="false"/>
+                                    <option value=${medium.id}> 
+                                        ${medium.nom}
+                                    </option>
                                 </c:forEach>
                             </select>
                         </div>
