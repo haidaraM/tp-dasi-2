@@ -95,7 +95,6 @@ public class InscriptionFormAction extends Action {
             if (service.Service.creerClient(client)) {
                 request.setAttribute(ATT_CLIENT, client);
             } else {
-
                 request.setAttribute(ATT_CLIENT, null);
             }
         } else {
